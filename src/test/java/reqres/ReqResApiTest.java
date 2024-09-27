@@ -1,5 +1,6 @@
 package reqres;
 
+import io.automationhacks.testinfra.attribution.OnCall;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
@@ -8,6 +9,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
+@OnCall("testinfra")
 public class ReqResApiTest {
 
     @BeforeClass
@@ -16,6 +18,7 @@ public class ReqResApiTest {
     }
 
     @Test
+    @OnCall("rob@example.com")
     public void testListUsers() {
         given()
                 .when()
@@ -27,6 +30,7 @@ public class ReqResApiTest {
     }
 
     @Test
+    @OnCall("jane@example.com")
     public void testSingleUser() {
         given()
                 .when()
@@ -38,6 +42,7 @@ public class ReqResApiTest {
     }
 
     @Test
+    @OnCall("jane@example.com")
     public void testSingleUserNotFound() {
         given()
                 .when()
@@ -47,6 +52,7 @@ public class ReqResApiTest {
     }
 
     @Test
+    @OnCall("rob@example.com")
     public void testListResource() {
         given()
                 .when()
