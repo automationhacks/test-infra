@@ -1,17 +1,21 @@
 package io.automationhacks.testinfra.listing;
 
+import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
+import io.automationhacks.testinfra.attribution.annotations.Service;
 
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 
 public class TestListing {
+    private static Map<String, Integer> flowCount = new HashMap<>();
+    private static Map<String, Integer> serviceToTestCount = new HashMap<>();
+
     public static void main(String[] args) {
         String packageName = "io.automationhacks.testinfra.reqres";
         List<Class<?>> testClasses = findTestClasses(packageName);
@@ -19,38 +23,96 @@ public class TestListing {
         for (Class<?> testClass : testClasses) {
 
             System.out.printf("- Test Class: %s%n", testClass.getSimpleName());
-            String classOncall = getOnCallValue(testClass);
+            String classOncall = getAnnotationValue(testClass, OnCall.class);
             System.out.printf("- oncall: %s%n", classOncall);
+
+            String classFlow = getAnnotationValue(testClass, Flow.class);
+            if (classFlow != null) {
+                System.out.printf("- classFlow: %s%n", classFlow);
+                incrementCount(flowCount, classFlow);
+            }
 
             for (Method method : testClass.getDeclaredMethods()) {
 
                 if (method.isAnnotationPresent(Test.class)) {
                     System.out.println("  - Test Method: " + method.getName());
 
-                    String methodOnCall = getOnCallValue(method);
+                    String methodOnCall = getAnnotationValue(method, OnCall.class);
+                    String methodFlow = getAnnotationValue(method, Flow.class);
+                    String methodService = getAnnotationValue(method, Service.class);
+
                     if (methodOnCall != null) {
                         System.out.printf("  - oncall: %s%n", methodOnCall);
                     } else if (classOncall != null) {
-                        System.out.printf("  - oncall: %s%n", classOncall);
+                        System.out.printf(
+                                "  - oncall: %s%s%n", classOncall, " (inherited from class)");
+                    }
+
+                    if (methodFlow != null) {
+                        System.out.printf("  - Functional Flow: %s%n", methodFlow);
+                        incrementCount(flowCount, methodFlow);
+                    } else if (classFlow != null) {
+                        System.out.printf(
+                                "  - Functional Flow: %s (inherited from class)%n", classFlow);
+                        incrementCount(flowCount, classFlow);
+                    }
+
+                    if (methodService != null) {
+                        System.out.printf("  - Service Method: %s%n", methodService);
+                        incrementCount(serviceToTestCount, methodService);
                     }
                 }
             }
         }
+
+        printSummaryStatistics();
     }
 
-    private static String getOnCallValue(Method method) {
-        if (method.isAnnotationPresent(OnCall.class)) {
-            return method.getAnnotation(OnCall.class).value();
+    private static <T> String getAnnotationValue(
+            Class<?> clazz, Class<? extends Annotation> annotationClass) {
+        if (clazz.isAnnotationPresent(annotationClass)) {
+            try {
+                return (String)
+                        annotationClass
+                                .getMethod("value")
+                                .invoke(clazz.getAnnotation(annotationClass));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
         return null;
     }
 
-    private static String getOnCallValue(Class<?> clazz) {
-        if (clazz.isAnnotationPresent(OnCall.class)) {
-            return clazz.getAnnotation(OnCall.class).value();
+    private static <T> String getAnnotationValue(
+            Method method, Class<? extends Annotation> annotationClass) {
+        if (method.isAnnotationPresent(annotationClass)) {
+            try {
+                return (String)
+                        annotationClass
+                                .getMethod("value")
+                                .invoke(method.getAnnotation(annotationClass));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return null;
+    }
+
+    private static void incrementCount(Map<String, Integer> map, String key) {
+        map.put(key, map.getOrDefault(key, 0) + 1);
+    }
+
+    private static void printSummaryStatistics() {
+        System.out.println("\nSummary Statistics:");
+        System.out.println("Functional Flow Coverage:");
+        for (Map.Entry<String, Integer> entry : flowCount.entrySet()) {
+            System.out.printf("  %s: %d test(s)%n", entry.getKey(), entry.getValue());
+        }
+
+        System.out.println("\nService Method Coverage:");
+        for (Map.Entry<String, Integer> entry : serviceToTestCount.entrySet()) {
+            System.out.printf("  %s: %d test(s)%n", entry.getKey(), entry.getValue());
+        }
     }
 
     private static List<Class<?>> findTestClasses(String packageName) {
