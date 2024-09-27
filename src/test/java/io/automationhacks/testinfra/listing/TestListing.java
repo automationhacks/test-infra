@@ -13,24 +13,25 @@ import java.util.List;
 
 public class TestListing {
     public static void main(String[] args) {
-        String packageName = "io/automationhacks/testinfra/reqres";
+        String packageName = "io.automationhacks.testinfra.reqres";
         List<Class<?>> testClasses = findTestClasses(packageName);
 
         for (Class<?> testClass : testClasses) {
 
-            System.out.printf("Test Class: %s%n", testClass.getSimpleName());
+            System.out.printf("- Test Class: %s%n", testClass.getSimpleName());
             String classOncall = getOnCallValue(testClass);
-            System.out.printf("  Class oncall: %s%n", classOncall);
+            System.out.printf("- oncall: %s%n", classOncall);
 
-            for (java.lang.reflect.Method method : testClass.getDeclaredMethods()) {
+            for (Method method : testClass.getDeclaredMethods()) {
+
                 if (method.isAnnotationPresent(Test.class)) {
-                    System.out.println("    Test Method: " + method.getName());
+                    System.out.println("  - Test Method: " + method.getName());
 
                     String methodOnCall = getOnCallValue(method);
                     if (methodOnCall != null) {
-                        System.out.printf("     Method oncall: %s%n", methodOnCall);
+                        System.out.printf("  - oncall: %s%n", methodOnCall);
                     } else if (classOncall != null) {
-                        System.out.printf("  Class oncall: %s%n", classOncall);
+                        System.out.printf("  - oncall: %s%n", classOncall);
                     }
                 }
             }
