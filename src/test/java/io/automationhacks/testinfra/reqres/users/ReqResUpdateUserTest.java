@@ -10,6 +10,7 @@ import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
+import io.automationhacks.testinfra.constants.Groups;
 import io.automationhacks.testinfra.constants.Services;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -21,12 +22,12 @@ import org.testng.annotations.Test;
 @Flow(Flows.USERS)
 public class ReqResUpdateUserTest {
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @Service(Services.UPDATE_USER)
     public void testUpdate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
@@ -42,7 +43,7 @@ public class ReqResUpdateUserTest {
                 .body("updatedAt", notNullValue());
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @Service(Services.PATCH_USER)
     public void testPatch() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";

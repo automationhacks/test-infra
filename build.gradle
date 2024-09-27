@@ -14,3 +14,41 @@ dependencies {
     testImplementation 'org.testng:testng:7.10.2'
 }
 
+test {
+    useTestNG() {
+        useDefaultListeners = true
+        parallel = 'methods'
+        threadCount = 6
+
+        includeGroups System.getProperty('includedGroups', '')
+        excludeGroups System.getProperty('excludedGroups', '')
+
+        outputDirectory = file('$buildDir/testngOutput')
+    }
+
+    // pass system properties from commandline
+    systemProperties = System.properties
+
+    // show stdout and stderr of test JVM on console
+    testLogging.showStandardStreams = true
+}
+
+task runTests() {
+    doLast {
+        def groups = System.getProperty('groups', '').split(',')
+
+        if (groups.size() < 2) {
+            throw new GradleException('At least 2 groups must be specified. Use -Dgroups=group1,group2,...')
+        }
+
+        def testClasses = sourceSets.test.output.classesDirs.asFileTree.matching {
+            include '**/*Test.class'
+        }.files.collect { it.absolutePath.replaceAll('\\\\', '/') }
+
+        javaexec {
+            main = 'org.testng.TestNG'
+            classpath = sourceSets.test.runtimeClasspath
+            args = ['-testclass', testClasses.join(','), '-groups', groups.join(',')]
+        }
+    }
+}

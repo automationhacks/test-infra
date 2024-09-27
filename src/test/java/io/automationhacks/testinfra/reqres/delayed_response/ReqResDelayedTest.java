@@ -10,6 +10,7 @@ import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
+import io.automationhacks.testinfra.constants.Groups;
 import io.automationhacks.testinfra.constants.Services;
 import io.restassured.RestAssured;
 
@@ -20,12 +21,12 @@ import org.testng.annotations.Test;
 @Flow(Flows.DELAYED_RESPONSE)
 public class ReqResDelayedTest {
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @Service(Services.DELAYED_RESPONSE)
     public void testDelayedResponse() {
         given().when()

@@ -10,6 +10,7 @@ import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
+import io.automationhacks.testinfra.constants.Groups;
 import io.restassured.RestAssured;
 
 import org.testng.annotations.BeforeClass;
@@ -19,12 +20,12 @@ import org.testng.annotations.Test;
 @Flow(Flows.USERS)
 public class ReqResGetUserTest {
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @OnCall(ROB)
     @Service(LIST_USERS)
     public void testListUsers() {
@@ -36,7 +37,7 @@ public class ReqResGetUserTest {
                 .body("data", hasSize(greaterThan(0)));
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @OnCall(JANE)
     @Service(LIST_USERS)
     public void testSingleUser() {
@@ -48,21 +49,21 @@ public class ReqResGetUserTest {
                 .body("data.email", notNullValue());
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @OnCall(JANE)
     @Service(LIST_USERS)
     public void testSingleUserNotFound() {
         given().when().get("/users/23").then().statusCode(404);
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @OnCall(ROB)
     @Service(LIST_RESOURCES)
     public void testListResource() {
         given().when().get("/unknown").then().statusCode(200).body("data", hasSize(greaterThan(0)));
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @Service(SINGLE_RESOURCE)
     public void testSingleResource() {
         given().when()
@@ -73,7 +74,7 @@ public class ReqResGetUserTest {
                 .body("data.name", notNullValue());
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @Service(LIST_RESOURCES)
     public void testSingleResourceNotFound() {
         given().when().get("/unknown/23").then().statusCode(404);

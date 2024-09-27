@@ -9,6 +9,7 @@ import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
+import io.automationhacks.testinfra.constants.Groups;
 import io.automationhacks.testinfra.constants.Services;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -20,12 +21,12 @@ import org.testng.annotations.Test;
 @Flow(Flows.LOGIN)
 public class ReqResLoginTest {
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test
+    @Test(groups = {Groups.SMOKE})
     @Service(Services.LOGIN)
     public void testLoginSuccessful() {
         String requestBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
@@ -39,7 +40,7 @@ public class ReqResLoginTest {
                 .body("token", notNullValue());
     }
 
-    @Test
+    @Test(groups = {Groups.REGRESSION})
     @Service(Services.LOGIN)
     public void testLoginUnsuccessful() {
         String requestBody = "{\"email\": \"peter@klaven\"}";

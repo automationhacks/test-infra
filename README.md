@@ -11,3 +11,28 @@ Test observability platform
 - Should be able to calculate if a test is broken consistently
 - Should be able to calculate if a test is flaky consistently
 
+## Running tests
+
+Run all tests
+
+```commandline
+./gradlew clean test --info
+```
+
+Run only groups belonging to a certain group
+
+```commandline
+./gradlew test -DincludedGroups=smoke --info
+```
+
+Run tests belonging to multiple groups
+
+```commandline
+./gradlew test -DincludedGroups=smoke,regression --info
+```
+
+Run tests only when they belong to both the groups specified
+
+```commandline
+./gradlew runTests -Dgroups=smoke,regression --info
+```
