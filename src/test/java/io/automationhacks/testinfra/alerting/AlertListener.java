@@ -89,6 +89,7 @@ public class AlertListener implements ITestListener {
 
     private String getFlow(Method testMethod) {
         Flow flowAnnotation = testMethod.getAnnotation(Flow.class);
+
         if (flowAnnotation == null) {
             flowAnnotation = testMethod.getDeclaringClass().getAnnotation(Flow.class);
         }

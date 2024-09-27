@@ -10,7 +10,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.34'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+
     implementation 'com.slack.api:slack-api-client:1.43.1'
     testImplementation 'io.rest-assured:rest-assured:5.5.0'
     testImplementation 'org.testng:testng:7.10.2'
