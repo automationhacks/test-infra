@@ -1,4 +1,4 @@
-package io.automationhacks.testinfra.reqres;
+package io.automationhacks.testinfra.reqres.login;
 
 import static io.automationhacks.testinfra.constants.Oncalls.TEST_INFRA;
 import static io.restassured.RestAssured.given;
@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @OnCall(TEST_INFRA)
-public class ReqResRegistrationTest {
+public class ReqResLoginTest {
 
     @BeforeClass
     public void setup() {
@@ -21,27 +21,26 @@ public class ReqResRegistrationTest {
     }
 
     @Test
-    public void testRegisterSuccessful() {
-        String requestBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\"}";
+    public void testLoginSuccessful() {
+        String requestBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
 
         given().contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/register")
+                .post("/login")
                 .then()
                 .statusCode(200)
-                .body("id", notNullValue())
                 .body("token", notNullValue());
     }
 
     @Test
-    public void testRegisterUnsuccessful() {
-        String requestBody = "{\"email\": \"sydney@fife\"}";
+    public void testLoginUnsuccessful() {
+        String requestBody = "{\"email\": \"peter@klaven\"}";
 
         given().contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("/register")
+                .post("/login")
                 .then()
                 .statusCode(400)
                 .body("error", equalTo("Missing password"));

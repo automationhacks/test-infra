@@ -1,4 +1,4 @@
-package io.automationhacks.testinfra.reqres.read;
+package io.automationhacks.testinfra.reqres.users;
 
 import static io.automationhacks.testinfra.constants.Oncalls.*;
 import static io.restassured.RestAssured.given;

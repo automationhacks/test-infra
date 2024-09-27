@@ -1,4 +1,4 @@
-package io.automationhacks.testinfra.reqres;
+package io.automationhacks.testinfra.reqres.delayed_response;
 
 import static io.automationhacks.testinfra.constants.Oncalls.TEST_INFRA;
 import static io.restassured.RestAssured.given;
