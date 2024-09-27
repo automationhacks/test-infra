@@ -6,7 +6,11 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
+import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
+import io.automationhacks.testinfra.attribution.annotations.Service;
+import io.automationhacks.testinfra.constants.Flows;
+import io.automationhacks.testinfra.constants.Services;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -14,6 +18,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @OnCall(TEST_INFRA)
+@Flow(Flows.USERS)
 public class ReqResUpdateUserTest {
 
     @BeforeClass
@@ -21,7 +26,8 @@ public class ReqResUpdateUserTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test()
+    @Test
+    @Service(Services.UPDATE_USER)
     public void testUpdate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
 
@@ -37,6 +43,7 @@ public class ReqResUpdateUserTest {
     }
 
     @Test
+    @Service(Services.PATCH_USER)
     public void testPatch() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
 

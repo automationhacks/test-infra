@@ -6,13 +6,18 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
 
+import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
+import io.automationhacks.testinfra.attribution.annotations.Service;
+import io.automationhacks.testinfra.constants.Flows;
+import io.automationhacks.testinfra.constants.Services;
 import io.restassured.RestAssured;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @OnCall(TEST_INFRA)
+@Flow(Flows.DELAYED_RESPONSE)
 public class ReqResDelayedTest {
 
     @BeforeClass
@@ -21,6 +26,7 @@ public class ReqResDelayedTest {
     }
 
     @Test
+    @Service(Services.DELAYED_RESPONSE)
     public void testDelayedResponse() {
         given().when()
                 .get("/users?delay=3")

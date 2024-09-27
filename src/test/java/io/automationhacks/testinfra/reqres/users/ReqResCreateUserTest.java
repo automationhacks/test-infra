@@ -17,6 +17,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @OnCall(TEST_INFRA)
+@Flow(Flows.USERS)
 public class ReqResCreateUserTest {
 
     @BeforeClass
@@ -25,7 +26,6 @@ public class ReqResCreateUserTest {
     }
 
     @Test
-    @Flow(Flows.USERS)
     @Service(Services.CREATE_USER)
     public void testCreate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"leader\"}";

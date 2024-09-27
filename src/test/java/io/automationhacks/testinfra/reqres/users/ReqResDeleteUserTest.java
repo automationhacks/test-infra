@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @OnCall(TEST_INFRA)
+@Flow(Flows.USERS)
 public class ReqResDeleteUserTest {
 
     @BeforeClass
@@ -22,7 +23,6 @@ public class ReqResDeleteUserTest {
     }
 
     @Test
-    @Flow(Flows.USERS)
     @Service(Services.DELETE_USER)
     public void testDelete() {
         given().when().delete("/users/2").then().statusCode(204);

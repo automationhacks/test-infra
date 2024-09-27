@@ -5,7 +5,11 @@ import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
 
+import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
+import io.automationhacks.testinfra.attribution.annotations.Service;
+import io.automationhacks.testinfra.constants.Flows;
+import io.automationhacks.testinfra.constants.Services;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -13,6 +17,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @OnCall(TEST_INFRA)
+@Flow(Flows.LOGIN)
 public class ReqResLoginTest {
 
     @BeforeClass
@@ -21,6 +26,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Service(Services.LOGIN)
     public void testLoginSuccessful() {
         String requestBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
 
@@ -34,6 +40,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Service(Services.LOGIN)
     public void testLoginUnsuccessful() {
         String requestBody = "{\"email\": \"peter@klaven\"}";
 
