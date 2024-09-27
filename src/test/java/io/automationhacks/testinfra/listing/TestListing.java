@@ -1,9 +1,7 @@
-package testinfra;
-
+package io.automationhacks.testinfra.listing;
 
 import io.automationhacks.testinfra.attribution.OnCall;
-import org.junit.platform.commons.logging.Logger;
-import org.junit.platform.commons.logging.LoggerFactory;
+
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -13,11 +11,9 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-public class TestNGTestListing {
-    private Logger logger = LoggerFactory.getLogger(TestNGTestListing.class);
-
+public class TestListing {
     public static void main(String[] args) {
-        String packageName = "reqres"; // Replace with your package name
+        String packageName = "io/automationhacks/testinfra/reqres";
         List<Class<?>> testClasses = findTestClasses(packageName);
 
         for (Class<?> testClass : testClasses) {
@@ -66,12 +62,20 @@ public class TestNGTestListing {
             while (resources.hasMoreElements()) {
                 URL resource = resources.nextElement();
                 File directory = new File(resource.getFile());
+
                 if (directory.exists()) {
                     File[] files = directory.listFiles();
+
                     for (File file : files) {
+
                         if (file.isFile() && file.getName().endsWith(".class")) {
-                            String className = packageName + '.' + file.getName().substring(0, file.getName().length() - 6);
+                            int noOfCharsForDotClass = 6;
+                            int endIndex = file.getName().length() - noOfCharsForDotClass;
+                            String fileName = file.getName().substring(0, endIndex);
+
+                            String className = "%s.%s".formatted(packageName, fileName);
                             Class<?> clazz = Class.forName(className);
+
                             if (clazz.isAnnotationPresent(Test.class) || hasTestMethods(clazz)) {
                                 testClasses.add(clazz);
                             }
