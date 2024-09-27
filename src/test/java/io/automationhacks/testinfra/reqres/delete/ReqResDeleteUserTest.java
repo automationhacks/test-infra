@@ -3,7 +3,7 @@ package io.automationhacks.testinfra.reqres.delete;
 import static io.automationhacks.testinfra.constants.Oncalls.TEST_INFRA;
 import static io.restassured.RestAssured.given;
 
-import io.automationhacks.testinfra.attribution.OnCall;
+import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.restassured.RestAssured;
 
 import org.testng.annotations.BeforeClass;

@@ -1,4 +1,4 @@
-package io.automationhacks.testinfra.attribution;
+package io.automationhacks.testinfra.attribution.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

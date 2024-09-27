@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
 
-import io.automationhacks.testinfra.attribution.OnCall;
+import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.restassured.RestAssured;
 
 import org.testng.annotations.BeforeClass;

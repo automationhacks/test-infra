@@ -1,6 +1,6 @@
 package io.automationhacks.testinfra.listing;
 
-import io.automationhacks.testinfra.attribution.OnCall;
+import io.automationhacks.testinfra.attribution.annotations.OnCall;
 
 import org.testng.annotations.Test;
 
