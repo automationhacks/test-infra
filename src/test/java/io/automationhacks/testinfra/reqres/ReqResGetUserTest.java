@@ -1,5 +1,6 @@
 package io.automationhacks.testinfra.reqres;
 
+import static io.automationhacks.testinfra.constants.Oncalls.*;
 import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
@@ -10,7 +11,7 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall("testinfra")
+@OnCall(TEST_INFRA)
 public class ReqResGetUserTest {
 
     @BeforeClass
@@ -19,7 +20,7 @@ public class ReqResGetUserTest {
     }
 
     @Test
-    @OnCall("rob@example.com")
+    @OnCall(ROB)
     public void testListUsers() {
         given().when()
                 .get("/users?page=2")
@@ -30,7 +31,7 @@ public class ReqResGetUserTest {
     }
 
     @Test
-    @OnCall("jane@example.com")
+    @OnCall(JANE)
     public void testSingleUser() {
         given().when()
                 .get("/users/2")
@@ -41,13 +42,13 @@ public class ReqResGetUserTest {
     }
 
     @Test
-    @OnCall("jane@example.com")
+    @OnCall(JANE)
     public void testSingleUserNotFound() {
         given().when().get("/users/23").then().statusCode(404);
     }
 
     @Test
-    @OnCall("rob@example.com")
+    @OnCall(ROB)
     public void testListResource() {
         given().when().get("/unknown").then().statusCode(200).body("data", hasSize(greaterThan(0)));
     }

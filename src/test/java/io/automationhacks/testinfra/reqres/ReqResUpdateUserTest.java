@@ -1,5 +1,6 @@
 package io.automationhacks.testinfra.reqres;
 
+import static io.automationhacks.testinfra.constants.Oncalls.TEST_INFRA;
 import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -12,7 +13,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall("testinfra")
+@OnCall(TEST_INFRA)
 public class ReqResUpdateUserTest {
 
     @BeforeClass
@@ -20,7 +21,7 @@ public class ReqResUpdateUserTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test
+    @Test()
     public void testUpdate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
 

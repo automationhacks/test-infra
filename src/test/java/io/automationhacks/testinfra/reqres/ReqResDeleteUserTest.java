@@ -1,5 +1,6 @@
 package io.automationhacks.testinfra.reqres;
 
+import static io.automationhacks.testinfra.constants.Oncalls.TEST_INFRA;
 import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
@@ -10,7 +11,7 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall("testinfra")
+@OnCall(TEST_INFRA)
 public class ReqResDeleteUserTest {
 
     @BeforeClass
