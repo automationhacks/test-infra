@@ -1,9 +1,7 @@
-package io.automationhacks.testinfra.reqres;
+package io.automationhacks.testinfra.reqres.delete;
 
 import static io.automationhacks.testinfra.constants.Oncalls.TEST_INFRA;
 import static io.restassured.RestAssured.given;
-
-import static org.hamcrest.Matchers.*;
 
 import io.automationhacks.testinfra.attribution.OnCall;
 import io.restassured.RestAssured;

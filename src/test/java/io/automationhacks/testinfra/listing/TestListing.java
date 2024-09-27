@@ -55,6 +55,7 @@ public class TestListing {
 
     private static List<Class<?>> findTestClasses(String packageName) {
         List<Class<?>> testClasses = new ArrayList<>();
+
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             String path = packageName.replace('.', '/');
@@ -65,27 +66,38 @@ public class TestListing {
                 File directory = new File(resource.getFile());
 
                 if (directory.exists()) {
-                    File[] files = directory.listFiles();
-
-                    for (File file : files) {
-
-                        if (file.isFile() && file.getName().endsWith(".class")) {
-                            int noOfCharsForDotClass = 6;
-                            int endIndex = file.getName().length() - noOfCharsForDotClass;
-                            String fileName = file.getName().substring(0, endIndex);
-
-                            String className = "%s.%s".formatted(packageName, fileName);
-                            Class<?> clazz = Class.forName(className);
-
-                            if (clazz.isAnnotationPresent(Test.class) || hasTestMethods(clazz)) {
-                                testClasses.add(clazz);
-                            }
-                        }
-                    }
+                    testClasses.addAll(findTestClassesInDirectory(directory, packageName));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return testClasses;
+    }
+
+    private static List<Class<?>> findTestClassesInDirectory(File directory, String packageName) {
+        List<Class<?>> testClasses = new ArrayList<>();
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    testClasses.addAll(
+                            findTestClassesInDirectory(file, packageName + "." + file.getName()));
+                } else if (file.getName().endsWith(".class")) {
+                    String className =
+                            packageName
+                                    + '.'
+                                    + file.getName().substring(0, file.getName().length() - 6);
+                    try {
+                        Class<?> clazz = Class.forName(className);
+                        if (clazz.isAnnotationPresent(Test.class) || hasTestMethods(clazz)) {
+                            testClasses.add(clazz);
+                        }
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
         return testClasses;
     }
