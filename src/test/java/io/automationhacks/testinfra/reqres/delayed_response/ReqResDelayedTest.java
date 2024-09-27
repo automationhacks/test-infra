@@ -26,7 +26,7 @@ public class ReqResDelayedTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Groups.SMOKE, Groups.REGRESSION, Groups.SLOW})
     @Service(Services.DELAYED_RESPONSE)
     public void testDelayedResponse() {
         given().when()

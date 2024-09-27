@@ -25,6 +25,12 @@ Run only groups belonging to a certain group
 ./gradlew test -DincludedGroups=smoke --info
 ```
 
+Run tests belonging to a group but excluding few
+
+```commandline
+./gradlew test -DincludedGroups=smoke -DexcludedGroups=slow --info
+```
+
 Run tests belonging to multiple groups
 
 ```commandline

@@ -22,8 +22,6 @@ test {
 
         includeGroups System.getProperty('includedGroups', '')
         excludeGroups System.getProperty('excludedGroups', '')
-
-        outputDirectory = file('$buildDir/testngOutput')
     }
 
     // pass system properties from commandline
