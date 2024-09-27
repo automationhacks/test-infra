@@ -1,13 +1,15 @@
 package io.automationhacks.testinfra.reqres;
 
+import static io.restassured.RestAssured.given;
+
+import static org.hamcrest.Matchers.*;
+
 import io.automationhacks.testinfra.attribution.OnCall;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
 
 @OnCall("testinfra")
 public class ReqResCreateUserTest {
@@ -21,8 +23,7 @@ public class ReqResCreateUserTest {
     public void testCreate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"leader\"}";
 
-        given()
-                .contentType(ContentType.JSON)
+        given().contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
                 .post("/users")
@@ -33,6 +34,4 @@ public class ReqResCreateUserTest {
                 .body("id", notNullValue())
                 .body("createdAt", notNullValue());
     }
-
-
 }

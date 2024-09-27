@@ -15,40 +15,38 @@ import org.testng.annotations.Test;
 @OnCall("testinfra")
 public class ReqResUpdateUserTest {
 
-  @BeforeClass
-  public void setup() {
-    RestAssured.baseURI = "https://reqres.in/api";
-  }
+    @BeforeClass
+    public void setup() {
+        RestAssured.baseURI = "https://reqres.in/api";
+    }
 
-  @Test
-  public void testUpdate() {
-    String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
+    @Test
+    public void testUpdate() {
+        String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
 
-    given()
-        .contentType(ContentType.JSON)
-        .body(requestBody)
-        .when()
-        .put("/users/2")
-        .then()
-        .statusCode(200)
-        .body("name", equalTo("morpheus"))
-        .body("job", equalTo("zion resident"))
-        .body("updatedAt", notNullValue());
-  }
+        given().contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .put("/users/2")
+                .then()
+                .statusCode(200)
+                .body("name", equalTo("morpheus"))
+                .body("job", equalTo("zion resident"))
+                .body("updatedAt", notNullValue());
+    }
 
-  @Test
-  public void testPatch() {
-    String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
+    @Test
+    public void testPatch() {
+        String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
 
-    given()
-        .contentType(ContentType.JSON)
-        .body(requestBody)
-        .when()
-        .patch("/users/2")
-        .then()
-        .statusCode(200)
-        .body("name", equalTo("morpheus"))
-        .body("job", equalTo("zion resident"))
-        .body("updatedAt", notNullValue());
-  }
+        given().contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .patch("/users/2")
+                .then()
+                .statusCode(200)
+                .body("name", equalTo("morpheus"))
+                .body("job", equalTo("zion resident"))
+                .body("updatedAt", notNullValue());
+    }
 }
