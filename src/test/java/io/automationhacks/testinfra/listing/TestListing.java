@@ -13,8 +13,8 @@ import java.net.URL;
 import java.util.*;
 
 public class TestListing {
-    private static Map<String, Integer> flowCount = new HashMap<>();
-    private static Map<String, Integer> serviceToTestCount = new HashMap<>();
+    private static final Map<String, Integer> flowCount = new HashMap<>();
+    private static final Map<String, Integer> serviceToTestCount = new HashMap<>();
 
     public static void main(String[] args) {
         String packageName = "io.automationhacks.testinfra.reqres";
