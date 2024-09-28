@@ -9,13 +9,15 @@ import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 
+import io.automationhacks.testinfra.constants.SysProps;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class SlackNotifier {
     private static final String SLACK_BOT_TOKEN = System.getenv("SLACK_BOT_TOKEN");
-    private static final String CHANNEL = "#test-alerts";
+    private static final String CHANNEL = SysProps.getSlackChannel();
 
     public void sendMessage(String onCall, String message) {
         try {
