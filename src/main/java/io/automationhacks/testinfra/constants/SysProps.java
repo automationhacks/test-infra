@@ -11,4 +11,8 @@ public class SysProps {
     public static String getSlackChannel() {
         return System.getProperty("slack.channel", "#test-alerts");
     }
+
+    public static String getSlackBotToken() {
+        return System.getenv("SLACK_BOT_TOKEN");
+    }
 }

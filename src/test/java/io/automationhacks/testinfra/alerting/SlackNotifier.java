@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class SlackNotifier {
     private static final Logger logger = Logger.getLogger(SlackNotifier.class.getName());
-    private static final String SLACK_BOT_TOKEN = System.getenv("SLACK_BOT_TOKEN");
+    private static final String SLACK_BOT_TOKEN = SysProps.getSlackBotToken();
     private static final String CHANNEL = SysProps.getSlackChannel();
 
     public void sendMessage(String onCall, String message) {
