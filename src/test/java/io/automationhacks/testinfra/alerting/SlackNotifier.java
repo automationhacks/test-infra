@@ -14,13 +14,18 @@ import io.automationhacks.testinfra.constants.SysProps;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class SlackNotifier {
+    private static final Logger logger = Logger.getLogger(SlackNotifier.class.getName());
     private static final String SLACK_BOT_TOKEN = System.getenv("SLACK_BOT_TOKEN");
     private static final String CHANNEL = SysProps.getSlackChannel();
 
     public void sendMessage(String onCall, String message) {
         try {
+            logger.info(
+                    "Sending Slack message to %s with message %s and token %s"
+                            .formatted(onCall, message, SLACK_BOT_TOKEN));
             MethodsClient methods = Slack.getInstance().methods(SLACK_BOT_TOKEN);
 
             ChatPostMessageRequest request =
@@ -30,7 +35,8 @@ public class SlackNotifier {
                             .blocks(buildMessageBlocks(onCall, message))
                             .build();
 
-            methods.chatPostMessage(request);
+            var response = methods.chatPostMessage(request);
+            logger.info("Slack message sent: %s".formatted(response));
         } catch (IOException | SlackApiException e) {
             e.printStackTrace();
         }

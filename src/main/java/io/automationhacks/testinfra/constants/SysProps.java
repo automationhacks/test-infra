@@ -3,6 +3,7 @@ package io.automationhacks.testinfra.constants;
 import io.automationhacks.testinfra.file.ConfigReader;
 
 public class SysProps {
+
     static {
         ConfigReader.loadProperties();
     }
