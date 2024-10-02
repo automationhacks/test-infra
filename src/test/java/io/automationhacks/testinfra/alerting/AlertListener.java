@@ -14,11 +14,15 @@ import org.testng.ITestResult;
 
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AlertListener implements ITestListener {
+    private static final Logger logger = Logger.getLogger(AlertListener.class.getName());
     private static final int HISTORY_SIZE = 5;
     private final Map<String, Deque<TestResult>> testHistory = new HashMap<>();
     private final SlackNotifier slackNotifier = new SlackNotifier();
+    private String parentThreadTs = null;
 
     @Override
     public void onTestFailure(ITestResult result) {
@@ -54,6 +58,15 @@ public class AlertListener implements ITestListener {
     }
 
     private void sendSlackAlert(TestResult testResult) {
+        if (parentThreadTs == null) {
+            String summaryMessage = createSummaryMessage();
+            var response = slackNotifier.sendMessage(testResult.getOnCall(), summaryMessage);
+            if (response.isOk()) {
+                parentThreadTs = response.getTs();
+                logger.log(Level.FINE, "Parent thread ts: %s".formatted(parentThreadTs));
+            }
+        }
+
         StringBuilder message = new StringBuilder();
 
         message.append("Test Failure Alert\n");
@@ -76,7 +89,35 @@ public class AlertListener implements ITestListener {
                     .append("\n");
         }
 
-        slackNotifier.sendMessage(testResult.getOnCall(), message.toString());
+        var response =
+                slackNotifier.sendMessageInThread(
+                        testResult.getOnCall(), message.toString(), parentThreadTs);
+        if (response.isOk()) {
+            logger.info("Slack message sent successfully in thread");
+        }
+    }
+
+    private String createSummaryMessage() {
+        int totalTests = testHistory.values().stream().mapToInt(Deque::size).sum();
+        long passedTests =
+                testHistory.values().stream()
+                        .flatMap(Collection::stream)
+                        .filter(result -> result.getStatus() == ITestResult.SUCCESS)
+                        .count();
+        long failedTests =
+                testHistory.values().stream()
+                        .flatMap(Collection::stream)
+                        .filter(result -> result.getStatus() == ITestResult.FAILURE)
+                        .count();
+        long skippedTests =
+                testHistory.values().stream()
+                        .flatMap(Collection::stream)
+                        .filter(result -> result.getStatus() == ITestResult.SKIP)
+                        .count();
+
+        return String.format(
+                "Test Execution Summary:\nTotal: %d\nPassed: %d\nFailed: %d\nSkipped: %d",
+                totalTests, passedTests, failedTests, skippedTests);
     }
 
     private String getOnCallPerson(Method testMethod) {

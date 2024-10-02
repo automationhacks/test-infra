@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
@@ -14,6 +15,7 @@ import io.automationhacks.testinfra.constants.SysProps;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SlackNotifier {
@@ -21,25 +23,45 @@ public class SlackNotifier {
     private static final String SLACK_BOT_TOKEN = SysProps.getSlackBotToken();
     private static final String CHANNEL = SysProps.getSlackChannel();
 
-    public void sendMessage(String onCall, String message) {
+    public ChatPostMessageResponse sendMessage(String onCall, String message) {
         try {
-            logger.info(
-                    "Sending Slack message to %s with message %s and token %s"
-                            .formatted(onCall, message, SLACK_BOT_TOKEN));
-            MethodsClient methods = Slack.getInstance().methods(SLACK_BOT_TOKEN);
+            logger.info("Sending Slack message to %s with message %s".formatted(onCall, message));
+            MethodsClient client = Slack.getInstance().methods(SLACK_BOT_TOKEN);
 
-            ChatPostMessageRequest request =
+            var request =
                     ChatPostMessageRequest.builder()
                             .channel(CHANNEL)
                             .text("<!here> Test Failure Alert for @" + onCall)
                             .blocks(buildMessageBlocks(onCall, message))
                             .build();
 
-            var response = methods.chatPostMessage(request);
-            logger.info("Slack message sent: %s".formatted(response));
+            return client.chatPostMessage(request);
         } catch (IOException | SlackApiException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Failed to send Slack message", e.getMessage());
         }
+        return null;
+    }
+
+    public ChatPostMessageResponse sendMessageInThread(
+            String oncall, String message, String threadTs) {
+        try {
+            logger.info(
+                    "Sending Slack message in thread %s with message %s"
+                            .formatted(threadTs, message));
+            MethodsClient client = Slack.getInstance().methods(SLACK_BOT_TOKEN);
+
+            var request =
+                    ChatPostMessageRequest.builder()
+                            .channel(CHANNEL)
+                            .text(message)
+                            .threadTs(threadTs)
+                            .build();
+
+            return client.chatPostMessage(request);
+        } catch (IOException | SlackApiException e) {
+            logger.log(Level.WARNING, "Failed to send Slack message in thread", e.getMessage());
+        }
+        return null;
     }
 
     private List<LayoutBlock> buildMessageBlocks(String onCall, String message) {
