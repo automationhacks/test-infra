@@ -35,6 +35,7 @@ public class AlertListener implements ITestListener {
 
         TestResult testResult =
                 new TestResult(
+                        result.getTestClass().getName(),
                         testName,
                         result.getStatus(),
                         result.getThrowable().getMessage(),
@@ -68,15 +69,17 @@ public class AlertListener implements ITestListener {
         }
 
         StringBuilder message = new StringBuilder();
-
-        message.append("Test Failure Alert\n");
-        message.append("Test Name: ").append(testResult.getName()).append("\n");
-        message.append("Status: FAILED\n");
-        message.append("Error Message: ").append(testResult.getErrorMessage()).append("\n");
-        message.append("Timestamp: ").append(testResult.getTimestamp()).append("\n");
-        message.append("Functional Flow: ").append(testResult.getFunctionalFlow()).append("\n");
-        message.append("Service Method: ").append(testResult.getServiceMethod()).append("\n");
-        message.append("OnCall: ").append(testResult.getOnCall()).append("\n\n");
+        message.append("*Test Failure alert*\n");
+        message.append("*Test Class:* *`").append(testResult.getTestClass()).append("`*\n");
+        message.append("*Test method:* *`").append(testResult.getName()).append("`*\n");
+        message.append("*Status:* 🔴\n");
+        message.append("*Error Message:* ```").append(testResult.getErrorMessage()).append("```\n");
+        message.append("*Timestamp:* *`").append(testResult.getTimestamp()).append("`*\n");
+        message.append("*Functional Flow:* *`")
+                .append(testResult.getFunctionalFlow())
+                .append("`*\n");
+        message.append("*Service Method:* *`").append(testResult.getServiceMethod()).append("`*\n");
+        message.append("*OnCall:* *`").append(testResult.getOnCall()).append("`*\n\n");
 
         message.append("Test History (Last 5 runs):\n");
         Deque<TestResult> history = testHistory.get(testResult.getName());
@@ -116,7 +119,7 @@ public class AlertListener implements ITestListener {
                         .count();
 
         return String.format(
-                "Test Execution Summary:\nTotal: %d\nPassed: %d\nFailed: %d\nSkipped: %d",
+                "*Test execution Summary:*\n*Total: %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*",
                 totalTests, passedTests, failedTests, skippedTests);
     }
 
@@ -171,6 +174,7 @@ public class AlertListener implements ITestListener {
 @Builder
 @AllArgsConstructor
 class TestResult {
+    private String testClass;
     private String name;
     private int status;
     private String errorMessage;

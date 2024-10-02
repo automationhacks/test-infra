@@ -71,7 +71,7 @@ public class SlackNotifier {
                 SectionBlock.builder()
                         .text(
                                 MarkdownTextObject.builder()
-                                        .text("*Test Failure Alert*\nOn-Call: @" + onCall)
+                                        .text("*Test Failure Alert*\nOnCall: *`@%s`*".formatted(onCall))
                                         .build())
                         .build(),
                 DividerBlock.builder().build(),
