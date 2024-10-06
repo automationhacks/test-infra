@@ -1,8 +1,8 @@
-# top
+# test-infra
 
-Test observability platform
+## Test observability platform
 
-## Spec
+### Spec
 
 - ✅ Should be able to list all the tests in the suite
 - ✅ Should be able to identify owners for a given test in the suite
@@ -11,7 +11,7 @@ Test observability platform
 - Should be able to calculate if a test is broken consistently
 - Should be able to calculate if a test is flaky consistently
 
-## Running tests
+### Running tests
 
 Run all tests
 
