@@ -119,7 +119,6 @@ public class AlertListener implements ITestListener {
             }
         }
 
-
         if (!failedTestResults.isEmpty()) {
 
             for (TestResult testResult : failedTestResults) {
