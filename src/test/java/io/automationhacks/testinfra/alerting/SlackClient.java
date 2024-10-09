@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SlackNotifier {
-    private static final Logger logger = Logger.getLogger(SlackNotifier.class.getName());
+public class SlackClient {
+    private static final Logger logger = Logger.getLogger(SlackClient.class.getName());
     private static final String SLACK_BOT_TOKEN = SysProps.getSlackBotToken();
     private static final String CHANNEL = SysProps.getSlackChannel();
 

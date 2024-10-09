@@ -24,7 +24,7 @@ dependencies {
 test {
     useTestNG() {
         useDefaultListeners = true
-        listeners << 'io.automationhacks.testinfra.alerting.AlertListener'
+        listeners << 'io.automationhacks.testinfra.alerting.TestListener'
         parallel = 'methods'
         threadCount = 6
 
