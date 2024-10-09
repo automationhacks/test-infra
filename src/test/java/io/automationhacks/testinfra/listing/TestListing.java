@@ -1,12 +1,17 @@
 package io.automationhacks.testinfra.listing;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 
+import lombok.Data;
+
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -15,57 +20,113 @@ import java.util.*;
 public class TestListing {
     private static final Map<String, Integer> flowCount = new HashMap<>();
     private static final Map<String, Integer> serviceToTestCount = new HashMap<>();
+    private static final List<TestClassInfo> testClassInfoList = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void listTestsWithMetadata(String[] args) {
         String packageName = "io.automationhacks.testinfra.reqres";
         List<Class<?>> testClasses = findTestClasses(packageName);
 
         for (Class<?> testClass : testClasses) {
+            TestClassInfo classInfo = new TestClassInfo(testClass.getSimpleName());
 
-            System.out.printf("- Test Class: %s%n", testClass.getSimpleName());
             String classOncall = getAnnotationValue(testClass, OnCall.class);
-            System.out.printf("- oncall: %s%n", classOncall);
+            classInfo.setOnCall(classOncall);
 
             String classFlow = getAnnotationValue(testClass, Flow.class);
             if (classFlow != null) {
-                System.out.printf("- classFlow: %s%n", classFlow);
+                classInfo.setFlow(classFlow);
                 incrementCount(flowCount, classFlow);
             }
 
             for (Method method : testClass.getDeclaredMethods()) {
-
                 if (method.isAnnotationPresent(Test.class)) {
-                    System.out.println("  - Test Method: " + method.getName());
+                    TestMethodInfo methodInfo = new TestMethodInfo(method.getName());
 
                     String methodOnCall = getAnnotationValue(method, OnCall.class);
                     String methodFlow = getAnnotationValue(method, Flow.class);
                     String methodService = getAnnotationValue(method, Service.class);
 
-                    if (methodOnCall != null) {
-                        System.out.printf("  - oncall: %s%n", methodOnCall);
-                    } else if (classOncall != null) {
-                        System.out.printf(
-                                "  - oncall: %s%s%n", classOncall, " (inherited from class)");
-                    }
+                    methodInfo.setOnCall(methodOnCall != null ? methodOnCall : classOncall);
+                    methodInfo.setFlow(methodFlow != null ? methodFlow : classFlow);
+                    methodInfo.setService(methodService);
 
                     if (methodFlow != null) {
-                        System.out.printf("  - Functional Flow: %s%n", methodFlow);
                         incrementCount(flowCount, methodFlow);
                     } else if (classFlow != null) {
-                        System.out.printf(
-                                "  - Functional Flow: %s (inherited from class)%n", classFlow);
                         incrementCount(flowCount, classFlow);
                     }
 
                     if (methodService != null) {
-                        System.out.printf("  - Service Method: %s%n", methodService);
                         incrementCount(serviceToTestCount, methodService);
                     }
+
+                    classInfo.addTestMethod(methodInfo);
                 }
             }
+
+            testClassInfoList.add(classInfo);
         }
 
         printSummaryStatistics();
+        writeToJsonFile("test_listing_output.json");
+    }
+
+    private static void writeToJsonFile(String fileName) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(
+                            new File(fileName),
+                            new TestListingOutput(
+                                    testClassInfoList, flowCount, serviceToTestCount));
+            System.out.println("JSON output has been written to " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Data
+    static class TestListingOutput {
+        private List<TestClassInfo> testClasses;
+        private Map<String, Integer> flowCoverage;
+        private Map<String, Integer> serviceCoverage;
+
+        public TestListingOutput(
+                List<TestClassInfo> testClasses,
+                Map<String, Integer> flowCoverage,
+                Map<String, Integer> serviceCoverage) {
+            this.testClasses = testClasses;
+            this.flowCoverage = flowCoverage;
+            this.serviceCoverage = serviceCoverage;
+        }
+    }
+
+    @Data
+    static class TestClassInfo {
+        private String className;
+        private String onCall;
+        private String flow;
+        private List<TestMethodInfo> testMethods = new ArrayList<>();
+
+        public TestClassInfo(String className) {
+            this.className = className;
+        }
+
+        public void addTestMethod(TestMethodInfo methodInfo) {
+            testMethods.add(methodInfo);
+        }
+    }
+
+    @Data
+    static class TestMethodInfo {
+        private String methodName;
+        private String onCall;
+        private String flow;
+        private String service;
+
+        public TestMethodInfo(String methodName) {
+            this.methodName = methodName;
+        }
     }
 
     private static <T> String getAnnotationValue(
