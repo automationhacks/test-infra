@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="Update IntelliJ module name to test-infra">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Refactored to remove redundant oncall param" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +26,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="to" type="f1a62948:ProjectNode" />
+                <item name="test-infra" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -72,29 +69,30 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestListing (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestNGTestListing.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ReqResApiTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TestNG.ReqResApiTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.reqres.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gauravsingh/self/test-infra/build.gradle&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.35517243&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestListing (1).executor": "Run",
+    "Application.TestNGTestListing.executor": "Run",
+    "Gradle.ReqResApiTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.ReqResApiTest.executor": "Run",
+    "TestNG.reqres.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/gauravsingh/self/test-infra/build.gradle",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.35517243",
+    "settings.editor.selected.configurable": "google-java-format.settings"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA",
+      "TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="reqres" />
@@ -285,7 +283,63 @@
       <option name="project" value="LOCAL" />
       <updated>1728223918935</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Renamed gradle project to test-infra">
+      <option name="closed" value="true" />
+      <created>1728224206628</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1728224206628</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Refactored slack notification code to remove local history and publish a message on suite finish with failure as an inline message.">
+      <option name="closed" value="true" />
+      <created>1728443041204</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1728443041204</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Refactored code to add a divider after message is posted">
+      <option name="closed" value="true" />
+      <created>1728443712270</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1728443712270</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Extracted TestResultManager.java with logic to prepare a test result entry">
+      <option name="closed" value="true" />
+      <created>1728445100973</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1728445100973</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Moved test result preparation messages to TestResultManager class">
+      <option name="closed" value="true" />
+      <created>1728448674392</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1728448674392</updated>
+    </task>
+    <task id="LOCAL-00028" summary="- Renamed AlertListener.java to TestListener.java&#10;- Updated build.gradle reference&#10;- Renamed SlackNotifier.java as SlackClient.java&#10;- Extracted logic to publish slack message into SlackPublisher">
+      <option name="closed" value="true" />
+      <created>1728449214776</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1728449214776</updated>
+    </task>
+    <task id="LOCAL-00029" summary="- Refactored to remove redundant oncall param">
+      <option name="closed" value="true" />
+      <created>1728449459061</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1728449459061</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -300,10 +354,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit" />
-    <MESSAGE value="- Added gradle dependency for testng and restassured&#10;- Added test suite for reqres API generated via claude&#10;- Added some use cases required in README.md" />
-    <MESSAGE value="- Added test listing utility to fetch the list of all test methods in a test class in a given package" />
-    <MESSAGE value="- Added oncall information on some test methods and class levels&#10;- Added an OnCall annotation&#10;- Updated TestNGTestListing to add convenience methods to check if OnCall annotation is present on a test file and if yes, return that." />
     <MESSAGE value="- Split tests into different files to explore if test listing would work on multiple files and packages&#10;- Removed JUnit dependency" />
     <MESSAGE value="Reformatted code into AOSP style" />
     <MESSAGE value="Extracted oncalls into a static java file and updated references in tests" />
@@ -322,7 +372,14 @@
     <MESSAGE value="- Added lombok dependencies for compile and annotation processing" />
     <MESSAGE value="Removed .idea folder&#10;Updated the project folder and name" />
     <MESSAGE value="Update IntelliJ module name to test-infra" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update IntelliJ module name to test-infra" />
+    <MESSAGE value="Renamed gradle project to test-infra" />
+    <MESSAGE value="Refactored slack notification code to remove local history and publish a message on suite finish with failure as an inline message." />
+    <MESSAGE value="Refactored code to add a divider after message is posted" />
+    <MESSAGE value="Extracted TestResultManager.java with logic to prepare a test result entry" />
+    <MESSAGE value="Moved test result preparation messages to TestResultManager class" />
+    <MESSAGE value="- Renamed AlertListener.java to TestListener.java&#10;- Updated build.gradle reference&#10;- Renamed SlackNotifier.java as SlackClient.java&#10;- Extracted logic to publish slack message into SlackPublisher" />
+    <MESSAGE value="- Refactored to remove redundant oncall param" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Refactored to remove redundant oncall param" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
