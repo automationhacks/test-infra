@@ -25,7 +25,7 @@ public class AlertListener implements ITestListener {
     private int passedTests = 0;
     private int failedTests = 0;
     private int skippedTests = 0;
-    private List<TestResult> failedTestResults = new ArrayList<>();
+    private final List<TestResult> failedTestResults = new ArrayList<>();
 
     @Override
     public void onTestFailure(ITestResult result) {
@@ -119,13 +119,13 @@ public class AlertListener implements ITestListener {
             }
         }
 
-        StringBuilder message = new StringBuilder();
 
         if (!failedTestResults.isEmpty()) {
-            message.append("*Test Failure alert*\n");
 
             for (TestResult testResult : failedTestResults) {
-                message.append("---\n");
+
+                StringBuilder message = new StringBuilder();
+                message.append("*🔴 Test Failure alert*\n");
                 message.append("*Test Class:* *`").append(testResult.getTestClass()).append("`*\n");
                 message.append("*Test method:* *`").append(testResult.getName()).append("`*\n");
                 message.append("*Error Message:* ```")
@@ -139,15 +139,16 @@ public class AlertListener implements ITestListener {
                         .append(testResult.getServiceMethod())
                         .append("`*\n");
                 message.append("*OnCall:* *`").append(testResult.getOnCall()).append("`*\n\n");
-            }
-        }
 
-        var response =
-                slackNotifier.sendMessageInThread(onCall, message.toString(), parentThreadTs);
-        if (response.isOk()) {
-            logger.info("Slack notification sent successfully");
-        } else {
-            logger.log(Level.WARNING, "Failed to send Slack notification");
+                var response =
+                        slackNotifier.sendMessageInThread(
+                                onCall, message.toString(), parentThreadTs);
+                if (response.isOk()) {
+                    logger.info("Slack notification sent successfully");
+                } else {
+                    logger.log(Level.WARNING, "Failed to send Slack notification");
+                }
+            }
         }
     }
 }

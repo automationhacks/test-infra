@@ -65,18 +65,16 @@ public class SlackNotifier {
     }
 
     private List<LayoutBlock> buildMessageBlocks(String onCall, String message) {
-        // Build Slack message blocks for better formatting
-        // This is a simplified version. You can enhance it for better visual representation.
         return Arrays.asList(
                 SectionBlock.builder()
                         .text(
                                 MarkdownTextObject.builder()
-                                        .text("*Test Failure Alert*\nOnCall: *`@%s`*".formatted(onCall))
+                                        .text("*OnCall*: *`@%s`*".formatted(onCall))
                                         .build())
                         .build(),
-                DividerBlock.builder().build(),
                 SectionBlock.builder()
                         .text(MarkdownTextObject.builder().text(message).build())
-                        .build());
+                        .build(),
+                DividerBlock.builder().build());
     }
 }
