@@ -1,18 +1,11 @@
 package io.automationhacks.testinfra.alerting;
 
-import io.automationhacks.testinfra.attribution.annotations.Flow;
-import io.automationhacks.testinfra.attribution.annotations.OnCall;
-import io.automationhacks.testinfra.attribution.annotations.Service;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import io.automationhacks.testinfra.model.TestResult;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +13,7 @@ import java.util.logging.Logger;
 public class AlertListener implements ITestListener {
     private static final Logger logger = Logger.getLogger(AlertListener.class.getName());
     private final SlackNotifier slackNotifier = new SlackNotifier();
+    private final TestResultManager testResultManager = new TestResultManager();
     private String parentThreadTs = null;
     private int totalTests = 0;
     private int passedTests = 0;
@@ -30,7 +24,7 @@ public class AlertListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         failedTests++;
-        failedTestResults.add(createTestResult(result));
+        failedTestResults.add(testResultManager.createTestResult(result));
     }
 
     @Override
@@ -54,47 +48,6 @@ public class AlertListener implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         sendSummaryNotification();
-    }
-
-    private TestResult createTestResult(ITestResult result) {
-        String testName = result.getMethod().getMethodName();
-        Method testMethod = result.getMethod().getConstructorOrMethod().getMethod();
-
-        String onCall = getOnCallPerson(testMethod);
-        String functionalFlow = getFlow(testMethod);
-        String serviceMethod = getService(testMethod);
-
-        return new TestResult(
-                result.getTestClass().getName(),
-                testName,
-                result.getStatus(),
-                result.getThrowable().getMessage(),
-                new Date(),
-                onCall,
-                functionalFlow,
-                serviceMethod);
-    }
-
-    private String getOnCallPerson(Method testMethod) {
-        OnCall onCallAnnotation = testMethod.getAnnotation(OnCall.class);
-        if (onCallAnnotation == null) {
-            onCallAnnotation = testMethod.getDeclaringClass().getAnnotation(OnCall.class);
-        }
-        return onCallAnnotation != null ? onCallAnnotation.value() : "Unknown";
-    }
-
-    private String getFlow(Method testMethod) {
-        Flow flowAnnotation = testMethod.getAnnotation(Flow.class);
-
-        if (flowAnnotation == null) {
-            flowAnnotation = testMethod.getDeclaringClass().getAnnotation(Flow.class);
-        }
-        return flowAnnotation != null ? flowAnnotation.value() : "Unknown";
-    }
-
-    private String getService(Method testMethod) {
-        Service serviceMethodAnnotation = testMethod.getAnnotation(Service.class);
-        return serviceMethodAnnotation != null ? serviceMethodAnnotation.value() : "Unknown";
     }
 
     private void sendSummaryNotification() {
@@ -150,18 +103,4 @@ public class AlertListener implements ITestListener {
             }
         }
     }
-}
-
-@Data
-@Builder
-@AllArgsConstructor
-class TestResult {
-    private String testClass;
-    private String name;
-    private int status;
-    private String errorMessage;
-    private Date timestamp;
-    private String onCall;
-    private String functionalFlow;
-    private String serviceMethod;
 }
