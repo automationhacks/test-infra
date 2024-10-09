@@ -19,13 +19,44 @@ import java.util.logging.Logger;
 
 public class AlertListener implements ITestListener {
     private static final Logger logger = Logger.getLogger(AlertListener.class.getName());
-    private static final int HISTORY_SIZE = 5;
-    private final Map<String, Deque<TestResult>> testHistory = new HashMap<>();
     private final SlackNotifier slackNotifier = new SlackNotifier();
     private String parentThreadTs = null;
+    private int totalTests = 0;
+    private int passedTests = 0;
+    private int failedTests = 0;
+    private int skippedTests = 0;
+    private List<TestResult> failedTestResults = new ArrayList<>();
 
     @Override
     public void onTestFailure(ITestResult result) {
+        failedTests++;
+        failedTestResults.add(createTestResult(result));
+    }
+
+    @Override
+    public void onTestStart(ITestResult result) {}
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        passedTests++;
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        skippedTests++;
+    }
+
+    @Override
+    public void onStart(ITestContext context) {
+        totalTests = context.getAllTestMethods().length;
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        sendSummaryNotification();
+    }
+
+    private TestResult createTestResult(ITestResult result) {
         String testName = result.getMethod().getMethodName();
         Method testMethod = result.getMethod().getConstructorOrMethod().getMethod();
 
@@ -33,94 +64,15 @@ public class AlertListener implements ITestListener {
         String functionalFlow = getFlow(testMethod);
         String serviceMethod = getService(testMethod);
 
-        TestResult testResult =
-                new TestResult(
-                        result.getTestClass().getName(),
-                        testName,
-                        result.getStatus(),
-                        result.getThrowable().getMessage(),
-                        new Date(),
-                        onCall,
-                        functionalFlow,
-                        serviceMethod);
-
-        updateTestHistory(testName, testResult);
-        sendSlackAlert(testResult);
-    }
-
-    private void updateTestHistory(String testName, TestResult testResult) {
-        testHistory.computeIfAbsent(testName, k -> new LinkedList<>());
-        Deque<TestResult> history = testHistory.get(testName);
-
-        history.addFirst(testResult);
-        if (history.size() > HISTORY_SIZE) {
-            history.removeLast();
-        }
-    }
-
-    private void sendSlackAlert(TestResult testResult) {
-        if (parentThreadTs == null) {
-            String summaryMessage = createSummaryMessage();
-            var response = slackNotifier.sendMessage(testResult.getOnCall(), summaryMessage);
-            if (response.isOk()) {
-                parentThreadTs = response.getTs();
-                logger.log(Level.FINE, "Parent thread ts: %s".formatted(parentThreadTs));
-            }
-        }
-
-        StringBuilder message = new StringBuilder();
-        message.append("*Test Failure alert*\n");
-        message.append("*Test Class:* *`").append(testResult.getTestClass()).append("`*\n");
-        message.append("*Test method:* *`").append(testResult.getName()).append("`*\n");
-        message.append("*Status:* 🔴\n");
-        message.append("*Error Message:* ```").append(testResult.getErrorMessage()).append("```\n");
-        message.append("*Timestamp:* *`").append(testResult.getTimestamp()).append("`*\n");
-        message.append("*Functional Flow:* *`")
-                .append(testResult.getFunctionalFlow())
-                .append("`*\n");
-        message.append("*Service Method:* *`").append(testResult.getServiceMethod()).append("`*\n");
-        message.append("*OnCall:* *`").append(testResult.getOnCall()).append("`*\n\n");
-
-        message.append("Test History (Last 5 runs):\n");
-        Deque<TestResult> history = testHistory.get(testResult.getName());
-
-        for (TestResult historicalResult : history) {
-            message.append("- ")
-                    .append(historicalResult.getTimestamp())
-                    .append(": ")
-                    .append(getStatusString(historicalResult.getStatus()))
-                    .append("\n");
-        }
-
-        var response =
-                slackNotifier.sendMessageInThread(
-                        testResult.getOnCall(), message.toString(), parentThreadTs);
-        if (response.isOk()) {
-            logger.info("Slack message sent successfully in thread");
-        }
-    }
-
-    private String createSummaryMessage() {
-        int totalTests = testHistory.values().stream().mapToInt(Deque::size).sum();
-        long passedTests =
-                testHistory.values().stream()
-                        .flatMap(Collection::stream)
-                        .filter(result -> result.getStatus() == ITestResult.SUCCESS)
-                        .count();
-        long failedTests =
-                testHistory.values().stream()
-                        .flatMap(Collection::stream)
-                        .filter(result -> result.getStatus() == ITestResult.FAILURE)
-                        .count();
-        long skippedTests =
-                testHistory.values().stream()
-                        .flatMap(Collection::stream)
-                        .filter(result -> result.getStatus() == ITestResult.SKIP)
-                        .count();
-
-        return String.format(
-                "*Test execution Summary:*\n*Total: %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*",
-                totalTests, passedTests, failedTests, skippedTests);
+        return new TestResult(
+                result.getTestClass().getName(),
+                testName,
+                result.getStatus(),
+                result.getThrowable().getMessage(),
+                new Date(),
+                onCall,
+                functionalFlow,
+                serviceMethod);
     }
 
     private String getOnCallPerson(Method testMethod) {
@@ -145,29 +97,59 @@ public class AlertListener implements ITestListener {
         return serviceMethodAnnotation != null ? serviceMethodAnnotation.value() : "Unknown";
     }
 
-    private String getStatusString(int status) {
-        return switch (status) {
-            case ITestResult.SUCCESS -> "PASSED";
-            case ITestResult.FAILURE -> "FAILED";
-            case ITestResult.SKIP -> "SKIPPED";
-            default -> "UNKNOWN";
-        };
+    private void sendSummaryNotification() {
+        sendSlackAlert();
     }
 
-    @Override
-    public void onTestStart(ITestResult result) {}
+    private void sendSlackAlert() {
+        String onCall = failedTestResults.isEmpty() ? "Team" : failedTestResults.get(0).getOnCall();
 
-    @Override
-    public void onTestSuccess(ITestResult result) {}
+        if (parentThreadTs == null) {
+            StringBuilder message = new StringBuilder();
+            message.append("*Test Execution Summary*\n");
+            message.append(
+                    String.format(
+                            "*Total: %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*\n\n",
+                            totalTests, passedTests, failedTests, skippedTests));
 
-    @Override
-    public void onTestSkipped(ITestResult result) {}
+            var response = slackNotifier.sendMessage(onCall, message.toString());
+            if (response.isOk()) {
+                parentThreadTs = response.getTs();
+                logger.log(Level.FINE, "Parent thread ts: %s".formatted(parentThreadTs));
+            }
+        }
 
-    @Override
-    public void onStart(ITestContext context) {}
+        StringBuilder message = new StringBuilder();
 
-    @Override
-    public void onFinish(ITestContext context) {}
+        if (!failedTestResults.isEmpty()) {
+            message.append("*Test Failure alert*\n");
+
+            for (TestResult testResult : failedTestResults) {
+                message.append("---\n");
+                message.append("*Test Class:* *`").append(testResult.getTestClass()).append("`*\n");
+                message.append("*Test method:* *`").append(testResult.getName()).append("`*\n");
+                message.append("*Error Message:* ```")
+                        .append(testResult.getErrorMessage())
+                        .append("```\n");
+                message.append("*Timestamp:* *`").append(testResult.getTimestamp()).append("`*\n");
+                message.append("*Functional Flow:* *`")
+                        .append(testResult.getFunctionalFlow())
+                        .append("`*\n");
+                message.append("*Service Method:* *`")
+                        .append(testResult.getServiceMethod())
+                        .append("`*\n");
+                message.append("*OnCall:* *`").append(testResult.getOnCall()).append("`*\n\n");
+            }
+        }
+
+        var response =
+                slackNotifier.sendMessageInThread(onCall, message.toString(), parentThreadTs);
+        if (response.isOk()) {
+            logger.info("Slack notification sent successfully");
+        } else {
+            logger.log(Level.WARNING, "Failed to send Slack notification");
+        }
+    }
 }
 
 @Data
