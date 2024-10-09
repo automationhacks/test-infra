@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Adding .idea files">
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Updated TestListing.java to dump the output in a JSON file instead of text">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/charts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/listing/TestListing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/listing/TestListing.java" afterDir="false" />
@@ -79,6 +83,7 @@
     "Application.TestNGTestListing.executor": "Run",
     "Gradle.ReqResApiTest.executor": "Run",
     "Gradle.test-infra [:TestListing.main()].executor": "Run",
+    "Gradle.test-infra [generateTestListing].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "TestNG.ReqResApiTest.executor": "Run",
@@ -103,7 +108,7 @@
       <recent name="reqres" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.test-infra [generateTestListing]">
     <configuration name="TestListing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.automationhacks.testinfra.listing.TestListing" />
       <module name="test-infra.test" />
@@ -117,8 +122,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test-infra [generateTestListing]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="generateTestListing" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.test-infra [generateTestListing]" />
         <item itemvalue="Application.TestListing" />
       </list>
     </recent_temporary>
@@ -372,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728491669370</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="- Updated TestListing.java to dump the output in a JSON file instead of text">
+      <option name="closed" value="true" />
+      <created>1728493405486</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1728493405486</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -387,7 +423,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reformatted code into AOSP style" />
     <MESSAGE value="Extracted oncalls into a static java file and updated references in tests" />
     <MESSAGE value="- Fixed a bug in source package having / instead of . and updated the print statements to have more readable attribution listing" />
     <MESSAGE value="- Moved tests into different folders&#10;- Updated TestListing to be recursive to support filtering values even in nested packages" />
@@ -412,7 +447,8 @@
     <MESSAGE value="- Renamed AlertListener.java to TestListener.java&#10;- Updated build.gradle reference&#10;- Renamed SlackNotifier.java as SlackClient.java&#10;- Extracted logic to publish slack message into SlackPublisher" />
     <MESSAGE value="- Refactored to remove redundant oncall param" />
     <MESSAGE value="- Adding .idea files" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Adding .idea files" />
+    <MESSAGE value="- Updated TestListing.java to dump the output in a JSON file instead of text" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Updated TestListing.java to dump the output in a JSON file instead of text" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

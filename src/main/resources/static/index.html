@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Test Listing Dashboard</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Test Listing Dashboard</h1>
+
+    <h2>Flow Coverage</h2>
+    <div class="chart-container">
+        <canvas id="flowCoverageChart"></canvas>
+    </div>
+
+    <h2>Service Method Coverage</h2>
+    <div class="chart-container">
+        <canvas id="serviceCoverageChart"></canvas>
+    </div>
+
+    <h2>Test Classes and Methods</h2>
+    <div id="testClassesTable"></div>
+</div>
+
+<script src="js/charts.js"></script>
+<script src="js/table.js"></script>
+<script>
+    fetch('data/test_listing_output.json')
+        .then(response => response.json())
+        .then(data => {
+            createFlowCoverageChart(data.flowCoverage);
+            createServiceCoverageChart(data.serviceCoverage);
+            createTestClassesTable(data.testClasses);
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+</body>
+</html>

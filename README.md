@@ -42,3 +42,13 @@ Run tests only when they belong to both the groups specified
 ```commandline
 ./gradlew runTests -Dgroups=smoke,regression --info
 ```
+
+### Check test listing dashboard
+
+```commandline
+cd build/resources/main
+```
+
+```commandline
+python3 -m http.server 8000
+```

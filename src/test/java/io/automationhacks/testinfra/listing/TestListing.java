@@ -22,7 +22,7 @@ public class TestListing {
     private static final Map<String, Integer> serviceToTestCount = new HashMap<>();
     private static final List<TestClassInfo> testClassInfoList = new ArrayList<>();
 
-    public static void listTestsWithMetadata(String[] args) {
+    public static void main(String[] args) {
         String packageName = "io.automationhacks.testinfra.reqres";
         List<Class<?>> testClasses = findTestClasses(packageName);
 
@@ -68,7 +68,7 @@ public class TestListing {
         }
 
         printSummaryStatistics();
-        writeToJsonFile("test_listing_output.json");
+        writeToJsonFile("src/main/resources/static/data/test_listing_output.json");
     }
 
     private static void writeToJsonFile(String fileName) {

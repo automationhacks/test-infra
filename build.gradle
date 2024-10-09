@@ -59,3 +59,16 @@ task runTests() {
         }
     }
 }
+
+task generateTestListing(type: JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'io.automationhacks.testinfra.listing.TestListing'
+}
+
+task copyWebResources(type: Copy) {
+    from 'src/main/resources/static'
+    into 'build/resources/main/static'
+}
+
+processResources.finalizedBy generateTestListing
+generateTestListing.finalizedBy copyWebResources
