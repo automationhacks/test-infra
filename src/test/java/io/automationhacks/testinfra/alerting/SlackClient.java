@@ -42,8 +42,21 @@ public class SlackClient {
         return null;
     }
 
-    public ChatPostMessageResponse sendMessageInThread(
-            String oncall, String message, String threadTs) {
+    private List<LayoutBlock> buildMessageBlocks(String onCall, String message) {
+        return Arrays.asList(
+                SectionBlock.builder()
+                        .text(
+                                MarkdownTextObject.builder()
+                                        .text("*OnCall*: *`@%s`*".formatted(onCall))
+                                        .build())
+                        .build(),
+                SectionBlock.builder()
+                        .text(MarkdownTextObject.builder().text(message).build())
+                        .build(),
+                DividerBlock.builder().build());
+    }
+
+    public ChatPostMessageResponse sendMessageInThread(String message, String threadTs) {
         try {
             logger.info(
                     "Sending Slack message in thread %s with message %s"
@@ -62,19 +75,5 @@ public class SlackClient {
             logger.log(Level.WARNING, "Failed to send Slack message in thread", e.getMessage());
         }
         return null;
-    }
-
-    private List<LayoutBlock> buildMessageBlocks(String onCall, String message) {
-        return Arrays.asList(
-                SectionBlock.builder()
-                        .text(
-                                MarkdownTextObject.builder()
-                                        .text("*OnCall*: *`@%s`*".formatted(onCall))
-                                        .build())
-                        .build(),
-                SectionBlock.builder()
-                        .text(MarkdownTextObject.builder().text(message).build())
-                        .build(),
-                DividerBlock.builder().build());
     }
 }

@@ -68,8 +68,7 @@ public class SlackPublisher {
                         .append("`*\n\n");
 
                 var testFailureResponse =
-                        slackClient.sendMessageInThread(
-                                onCall, testFailureMsg.toString(), parentThreadTs);
+                        slackClient.sendMessageInThread(testFailureMsg.toString(), parentThreadTs);
                 if (testFailureResponse.isOk()) {
                     logger.info("Slack notification sent successfully");
                 } else {
