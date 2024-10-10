@@ -64,3 +64,25 @@ function createServiceCoverageChart(serviceCoverage) {
         }
     });
 }
+
+function renderTable() {
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageClasses = allTestClasses.slice(start, end);
+        createTestClassesTable(pageClasses);
+    }
+
+    function renderPagination() {
+        const totalPages = Math.ceil(allTestClasses.length / itemsPerPage);
+        let paginationHtml = '';
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHtml += `<button onclick="changePage(${i})" ${i === currentPage ? 'disabled' : ''}>${i}</button>`;
+        }
+        document.getElementById('pagination').innerHTML = paginationHtml;
+    }
+
+    function changePage(page) {
+        currentPage = page;
+        renderTable();
+        renderPagination();
+    }

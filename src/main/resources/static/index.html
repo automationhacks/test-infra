@@ -23,19 +23,28 @@
 
     <h2>Test Classes and Methods</h2>
     <div id="testClassesTable"></div>
+    <div id="pagination"></div>
 </div>
 
 <script src="js/charts.js"></script>
 <script src="js/table.js"></script>
 <script>
+    let allTestClasses = [];
+    const itemsPerPage = 20;
+    let currentPage = 1;
+
     fetch('data/test_listing_output.json')
         .then(response => response.json())
         .then(data => {
             createFlowCoverageChart(data.flowCoverage);
             createServiceCoverageChart(data.serviceCoverage);
-            createTestClassesTable(data.testClasses);
+            allTestClasses = data.testClasses;
+            renderTable();
+            renderPagination();
         })
         .catch(error => console.error('Error:', error));
+
+
 </script>
 </body>
 </html>

@@ -32,3 +32,14 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+#pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+#pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+}
+details summary {
+    cursor: pointer;
+}

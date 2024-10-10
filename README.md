@@ -52,3 +52,7 @@ cd build/resources/main
 ```commandline
 python3 -m http.server 8000
 ```
+
+Open the generated html by navigating to:
+
+http://localhost:8000/static/index.html

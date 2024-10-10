@@ -7,9 +7,12 @@ function createTestClassesTable(testClasses) {
             <td>${classInfo.onCall || 'N/A'}</td>
             <td>${classInfo.flow || 'N/A'}</td>
             <td>
-                <ul>
-                    ${classInfo.testMethods.map(method => `<li>${method.methodName} (OnCall: ${method.onCall || 'N/A'}, Flow: ${method.flow || 'N/A'}, Service: ${method.service || 'N/A'})</li>`).join('')}
-                </ul>
+                <details>
+                    <summary>Show ${classInfo.testMethods.length} methods</summary>
+                    <ul>
+                        ${classInfo.testMethods.map(method => `<li>${method.methodName} (OnCall: ${method.onCall || 'N/A'}, Flow: ${method.flow || 'N/A'}, Service: ${method.service || 'N/A'})</li>`).join('')}
+                    </ul>
+                </details>
             </td>
         </tr>`;
     });
