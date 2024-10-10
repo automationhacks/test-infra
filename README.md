@@ -56,3 +56,17 @@ python3 -m http.server 8000
 Open the generated html by navigating to:
 
 http://localhost:8000/static/index.html
+
+### Report portal
+
+```commandline
+brew install docker-compose
+```
+
+```commandline
+curl -LO https://raw.githubusercontent.com/reportportal/reportportal/master/docker-compose.yml
+```
+
+```commandline
+docker-compose -p reportportal up -d --force-recreate
+```

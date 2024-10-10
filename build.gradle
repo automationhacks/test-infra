@@ -20,12 +20,15 @@ dependencies {
     implementation 'com.slack.api:slack-api-client:1.43.1'
     testImplementation 'io.rest-assured:rest-assured:5.5.0'
     testImplementation 'org.testng:testng:7.10.2'
+    testImplementation 'com.epam.reportportal:agent-java-testng:5.4.2'
+    testImplementation 'com.epam.reportportal:logger-java-logback:5.2.2'
 }
 
 test {
     useTestNG() {
         useDefaultListeners = true
         listeners << 'io.automationhacks.testinfra.alerting.TestListener'
+        listeners << 'com.epam.reportportal.testng.ReportPortalTestNGListener'
         parallel = 'methods'
         threadCount = 6
 
@@ -72,3 +75,4 @@ task copyWebResources(type: Copy) {
 
 processResources.finalizedBy generateTestListing
 generateTestListing.finalizedBy copyWebResources
+test.dependsOn(copyWebResources)
