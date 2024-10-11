@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="Added logic to wrap methods in the table such that user can expand what is required">
-      <change afterPath="$PROJECT_DIR$/META_INF/services/org.testng.ITestNGListener" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/reportportal.properties" afterDir="false" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="Added report portal integration&#10;&#10;- Docker compose file with report portal configuration&#10;- reportportal.properties with project config&#10;- logback.xml with report portal appender&#10;- build.gradle file dependency for listener&#10;- test ng agent and logback gradle dependencies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
@@ -400,7 +397,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728526709460</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Added report portal integration&#10;&#10;- Docker compose file with report portal configuration&#10;- reportportal.properties with project config&#10;- logback.xml with report portal appender&#10;- build.gradle file dependency for listener&#10;- test ng agent and logback gradle dependencies">
+      <option name="closed" value="true" />
+      <created>1728579748954</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1728579748954</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -415,7 +420,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Fixed a bug in source package having / instead of . and updated the print statements to have more readable attribution listing" />
     <MESSAGE value="- Moved tests into different folders&#10;- Updated TestListing to be recursive to support filtering values even in nested packages" />
     <MESSAGE value="Ticked completed requirements" />
     <MESSAGE value="Moved OnCall to a dedicated package" />
@@ -440,7 +444,8 @@
     <MESSAGE value="- Adding .idea files" />
     <MESSAGE value="- Updated TestListing.java to dump the output in a JSON file instead of text" />
     <MESSAGE value="Added logic to wrap methods in the table such that user can expand what is required" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logic to wrap methods in the table such that user can expand what is required" />
+    <MESSAGE value="Added report portal integration&#10;&#10;- Docker compose file with report portal configuration&#10;- reportportal.properties with project config&#10;- logback.xml with report portal appender&#10;- build.gradle file dependency for listener&#10;- test ng agent and logback gradle dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added report portal integration&#10;&#10;- Docker compose file with report portal configuration&#10;- reportportal.properties with project config&#10;- logback.xml with report portal appender&#10;- build.gradle file dependency for listener&#10;- test ng agent and logback gradle dependencies" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
