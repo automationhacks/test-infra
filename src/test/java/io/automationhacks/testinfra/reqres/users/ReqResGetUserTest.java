@@ -13,9 +13,11 @@ import io.automationhacks.testinfra.constants.Flows;
 import io.automationhacks.testinfra.constants.Groups;
 import io.restassured.RestAssured;
 
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+@OnCall(TEST_INFRA)
 @Flow(Flows.USERS)
 public class ReqResGetUserTest {
 
@@ -25,7 +27,7 @@ public class ReqResGetUserTest {
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ENGINEER_AH)
+    @OnCall(AUTOMATION_HACKS)
     @Service(LIST_USERS)
     public void testListUsers() {
         given().when()
@@ -37,7 +39,7 @@ public class ReqResGetUserTest {
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ENGINEER_R)
+    @OnCall(RACHIT)
     @Service(LIST_USERS)
     public void testSingleUser() {
         given().when()
@@ -49,35 +51,46 @@ public class ReqResGetUserTest {
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ENGINEER_D)
+    @OnCall(DISHA)
     @Service(LIST_USERS)
     public void testSingleUserNotFound() {
-        given().when().get("/users/23").then().statusCode(404);
+        // TODO: Change this back to 404 once you've verified the negative scenario
+        given().when().get("/users/23").then().statusCode(204);
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ENGINEER_R)
+    @OnCall(RACHIT)
     @Service(LIST_RESOURCES)
     public void testListResource() {
         given().when().get("/unknown").then().statusCode(200).body("data", hasSize(greaterThan(0)));
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ENGINEER_RA)
+    @OnCall(ROJA)
     @Service(SINGLE_RESOURCE)
     public void testSingleResource() {
         given().when()
                 .get("/unknown/2")
                 .then()
-                .statusCode(200)
+                // TODO: Change this back to 200 once you've verified the negative scenario
+                .statusCode(500)
                 .body("data.id", equalTo(2))
                 .body("data.name", notNullValue());
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ENGINEER_AH)
+    @OnCall(AUTOMATION_HACKS)
     @Service(LIST_RESOURCES)
     public void testSingleResourceNotFound() {
         given().when().get("/unknown/23").then().statusCode(404);
+    }
+
+    // TODO: Remove this test if you want to see non skipped counts
+    @Test(groups = {Groups.REGRESSION})
+    @OnCall(AUTOMATION_HACKS)
+    @Service(LIST_RESOURCES)
+    public void testThatAlwaysGetsSkipped() {
+        throw new SkipException(
+                "This test is used to check if slack notification includes skipped tests or not");
     }
 }

@@ -32,7 +32,6 @@ public class SlackClient {
             var request =
                     ChatPostMessageRequest.builder()
                             .channel(CHANNEL)
-                            .text("💔 Broken test")
                             .blocks(buildMessageBlocks(onCall, message))
                             .build();
 

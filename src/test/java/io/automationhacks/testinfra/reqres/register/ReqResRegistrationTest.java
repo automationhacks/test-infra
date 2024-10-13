@@ -17,7 +17,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(Oncalls.ENGINEER_AH)
+@OnCall(Oncalls.AUTOMATION_HACKS)
 @Flow(Flows.REGISTER)
 public class ReqResRegistrationTest {
 
@@ -52,7 +52,8 @@ public class ReqResRegistrationTest {
                 .when()
                 .post("/register")
                 .then()
-                .statusCode(400)
+                // TODO: Change this back to 400 once you've verified the negative scenario
+                .statusCode(200)
                 .body("error", equalTo("Missing password"));
     }
 }

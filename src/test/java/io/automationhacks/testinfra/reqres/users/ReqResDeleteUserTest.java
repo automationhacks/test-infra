@@ -14,7 +14,7 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(Oncalls.ENGINEER_R)
+@OnCall(Oncalls.RACHIT)
 @Flow(Flows.USERS)
 public class ReqResDeleteUserTest {
 

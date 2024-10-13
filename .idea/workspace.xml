@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="Added maven local to repositories">
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/attribution/annotations/OnCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/attribution/annotations/OnCall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Oncalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Oncalls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/model/TestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/model/TestResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/TestResultManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/TestResultManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" afterDir="false" />
@@ -409,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728526709460</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure">
+      <option name="closed" value="true" />
+      <created>1728784394161</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1728784394161</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -424,7 +429,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Fixed a bug in source package having / instead of . and updated the print statements to have more readable attribution listing" />
     <MESSAGE value="- Moved tests into different folders&#10;- Updated TestListing to be recursive to support filtering values even in nested packages" />
     <MESSAGE value="Ticked completed requirements" />
     <MESSAGE value="Moved OnCall to a dedicated package" />
@@ -449,7 +453,8 @@
     <MESSAGE value="- Adding .idea files" />
     <MESSAGE value="- Updated TestListing.java to dump the output in a JSON file instead of text" />
     <MESSAGE value="Added logic to wrap methods in the table such that user can expand what is required" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logic to wrap methods in the table such that user can expand what is required" />
+    <MESSAGE value="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

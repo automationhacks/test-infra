@@ -18,7 +18,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(Oncalls.ENGINEER_AH)
+@OnCall(Oncalls.AUTOMATION_HACKS)
 @Flow(Flows.USERS)
 public class ReqResUpdateUserTest {
 

@@ -17,7 +17,7 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(Oncalls.ENGINEER_D)
+@OnCall(Oncalls.DISHA)
 @Flow(Flows.DELAYED_RESPONSE)
 public class ReqResDelayedTest {
 

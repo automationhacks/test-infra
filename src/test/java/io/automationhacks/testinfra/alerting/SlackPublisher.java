@@ -27,7 +27,7 @@ public class SlackPublisher {
         summaryMsg.append("*Test execution summary*\n");
         summaryMsg.append(
                 String.format(
-                        "*Total: 🟰 %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*\n",
+                        "*🟰 Total: %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*\n",
                         totalTests, passedTests, failedTests, skippedTests));
 
         var response = slackClient.sendMessage(onCall, summaryMsg.toString());
@@ -67,9 +67,9 @@ public class SlackPublisher {
                         .append(testResult.getServiceMethod())
                         .append("`*\n");
                 testFailureMsg
-                        .append("*OnCall:* *`<@")
+                        .append("*OnCall:* <@")
                         .append(testResult.getOnCall().getSlackId())
-                        .append(">`*\n\n");
+                        .append(">\n\n");
 
                 var testFailureResponse =
                         slackClient.sendMessageInThread(testFailureMsg.toString(), parentThreadTs);
