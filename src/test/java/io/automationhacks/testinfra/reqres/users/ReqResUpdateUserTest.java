@@ -1,6 +1,5 @@
 package io.automationhacks.testinfra.reqres.users;
 
-import static io.automationhacks.testinfra.constants.Oncalls.TEST_INFRA;
 import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -11,6 +10,7 @@ import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
 import io.automationhacks.testinfra.constants.Groups;
+import io.automationhacks.testinfra.constants.Oncalls;
 import io.automationhacks.testinfra.constants.Services;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -18,7 +18,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(TEST_INFRA)
+@OnCall(Oncalls.ENGINEER_AH)
 @Flow(Flows.USERS)
 public class ReqResUpdateUserTest {
 

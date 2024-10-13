@@ -3,6 +3,7 @@ package io.automationhacks.testinfra.alerting;
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
+import io.automationhacks.testinfra.constants.Oncalls;
 import io.automationhacks.testinfra.model.TestResult;
 
 import org.testng.ITestResult;
@@ -15,7 +16,7 @@ public class TestResultManager {
         String testName = result.getMethod().getMethodName();
         Method testMethod = result.getMethod().getConstructorOrMethod().getMethod();
 
-        String onCall = getOnCallPerson(testMethod);
+        Oncalls onCall = getOnCallPerson(testMethod);
         String functionalFlow = getFlow(testMethod);
         String serviceMethod = getService(testMethod);
 
@@ -30,12 +31,12 @@ public class TestResultManager {
                 serviceMethod);
     }
 
-    private String getOnCallPerson(Method testMethod) {
+    private Oncalls getOnCallPerson(Method testMethod) {
         OnCall onCallAnnotation = testMethod.getAnnotation(OnCall.class);
         if (onCallAnnotation == null) {
             onCallAnnotation = testMethod.getDeclaringClass().getAnnotation(OnCall.class);
         }
-        return onCallAnnotation != null ? onCallAnnotation.value() : "Unknown";
+        return onCallAnnotation != null ? onCallAnnotation.value() : Oncalls.UNASSIGNED;
     }
 
     private String getFlow(Method testMethod) {

@@ -1,5 +1,7 @@
 package io.automationhacks.testinfra.model;
 
+import io.automationhacks.testinfra.constants.Oncalls;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +17,7 @@ public class TestResult {
     private int status;
     private String errorMessage;
     private Date timestamp;
-    private String onCall;
+    private Oncalls onCall;
     private String functionalFlow;
     private String serviceMethod;
 }

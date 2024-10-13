@@ -1,5 +1,6 @@
 package io.automationhacks.testinfra.alerting;
 
+import io.automationhacks.testinfra.constants.Oncalls;
 import io.automationhacks.testinfra.model.TestResult;
 
 import java.util.List;
@@ -16,14 +17,17 @@ public class SlackPublisher {
             int passedTests,
             int failedTests,
             int skippedTests) {
-        String onCall = failedTestResults.isEmpty() ? "Team" : failedTestResults.get(0).getOnCall();
+        Oncalls onCall =
+                failedTestResults.isEmpty()
+                        ? Oncalls.UNASSIGNED
+                        : failedTestResults.get(0).getOnCall();
 
         String parentThreadTs = null;
         StringBuilder summaryMsg = new StringBuilder();
-        summaryMsg.append("*Test Execution Summary*\n");
+        summaryMsg.append("*Test execution summary*\n");
         summaryMsg.append(
                 String.format(
-                        "*Total: %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*\n\n",
+                        "*Total: 🟰 %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*\n",
                         totalTests, passedTests, failedTests, skippedTests));
 
         var response = slackClient.sendMessage(onCall, summaryMsg.toString());
@@ -63,9 +67,9 @@ public class SlackPublisher {
                         .append(testResult.getServiceMethod())
                         .append("`*\n");
                 testFailureMsg
-                        .append("*OnCall:* *`")
-                        .append(testResult.getOnCall())
-                        .append("`*\n\n");
+                        .append("*OnCall:* *`<@")
+                        .append(testResult.getOnCall().getSlackId())
+                        .append(">`*\n\n");
 
                 var testFailureResponse =
                         slackClient.sendMessageInThread(testFailureMsg.toString(), parentThreadTs);

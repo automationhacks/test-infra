@@ -17,7 +17,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(TEST_INFRA)
+@OnCall(ENGINEER_D)
 @Flow(Flows.USERS)
 public class ReqResCreateUserTest {
 

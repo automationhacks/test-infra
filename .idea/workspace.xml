@@ -6,7 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="Added maven local to repositories">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/attribution/annotations/OnCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/attribution/annotations/OnCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Oncalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Oncalls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/model/TestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/model/TestResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/TestResultManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/TestResultManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

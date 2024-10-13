@@ -10,6 +10,7 @@ import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 
+import io.automationhacks.testinfra.constants.Oncalls;
 import io.automationhacks.testinfra.constants.SysProps;
 
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class SlackClient {
     private static final String SLACK_BOT_TOKEN = SysProps.getSlackBotToken();
     private static final String CHANNEL = SysProps.getSlackChannel();
 
-    public ChatPostMessageResponse sendMessage(String onCall, String message) {
+    public ChatPostMessageResponse sendMessage(Oncalls onCall, String message) {
         try {
             logger.info("Sending Slack message to %s with message %s".formatted(onCall, message));
             MethodsClient client = Slack.getInstance().methods(SLACK_BOT_TOKEN);
@@ -31,7 +32,7 @@ public class SlackClient {
             var request =
                     ChatPostMessageRequest.builder()
                             .channel(CHANNEL)
-                            .text("<!here> Test Failure Alert for @" + onCall)
+                            .text("💔 Broken test")
                             .blocks(buildMessageBlocks(onCall, message))
                             .build();
 
@@ -42,12 +43,12 @@ public class SlackClient {
         return null;
     }
 
-    private List<LayoutBlock> buildMessageBlocks(String onCall, String message) {
+    private List<LayoutBlock> buildMessageBlocks(Oncalls onCall, String message) {
         return Arrays.asList(
                 SectionBlock.builder()
                         .text(
                                 MarkdownTextObject.builder()
-                                        .text("*OnCall*: *`@%s`*".formatted(onCall))
+                                        .text("*OnCall*: *`<@%s>`*".formatted(onCall.getSlackId()))
                                         .build())
                         .build(),
                 SectionBlock.builder()

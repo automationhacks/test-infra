@@ -16,7 +16,6 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(TEST_INFRA)
 @Flow(Flows.USERS)
 public class ReqResGetUserTest {
 
@@ -26,7 +25,7 @@ public class ReqResGetUserTest {
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ROB)
+    @OnCall(ENGINEER_AH)
     @Service(LIST_USERS)
     public void testListUsers() {
         given().when()
@@ -38,7 +37,7 @@ public class ReqResGetUserTest {
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(JANE)
+    @OnCall(ENGINEER_R)
     @Service(LIST_USERS)
     public void testSingleUser() {
         given().when()
@@ -50,20 +49,21 @@ public class ReqResGetUserTest {
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(JANE)
+    @OnCall(ENGINEER_D)
     @Service(LIST_USERS)
     public void testSingleUserNotFound() {
         given().when().get("/users/23").then().statusCode(404);
     }
 
     @Test(groups = {Groups.REGRESSION})
-    @OnCall(ROB)
+    @OnCall(ENGINEER_R)
     @Service(LIST_RESOURCES)
     public void testListResource() {
         given().when().get("/unknown").then().statusCode(200).body("data", hasSize(greaterThan(0)));
     }
 
     @Test(groups = {Groups.REGRESSION})
+    @OnCall(ENGINEER_RA)
     @Service(SINGLE_RESOURCE)
     public void testSingleResource() {
         given().when()
@@ -75,6 +75,7 @@ public class ReqResGetUserTest {
     }
 
     @Test(groups = {Groups.REGRESSION})
+    @OnCall(ENGINEER_AH)
     @Service(LIST_RESOURCES)
     public void testSingleResourceNotFound() {
         given().when().get("/unknown/23").then().statusCode(404);
