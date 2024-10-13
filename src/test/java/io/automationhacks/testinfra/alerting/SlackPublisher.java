@@ -30,7 +30,7 @@ public class SlackPublisher {
                         "*🟰 Total: %d | ✅ Passed: %d | ❌ Failed: %d | ⚠️ Skipped: %d*\n",
                         totalTests, passedTests, failedTests, skippedTests));
 
-        var response = slackClient.sendMessage(onCall, summaryMsg.toString());
+        var response = slackClient.sendMessage(summaryMsg.toString());
         if (response.isOk()) {
             parentThreadTs = response.getTs();
             logger.log(Level.FINE, "Parent thread ts: %s".formatted(parentThreadTs));

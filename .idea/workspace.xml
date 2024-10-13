@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Updated test listing to work with Oncall annotation returning object of oncall enum">
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Fixed bug in test listing wherein we had an unnecessary dependency on a non existent gradle task">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +78,7 @@
     "Application.TestNGTestListing.executor": "Run",
     "Gradle.ReqResApiTest.executor": "Run",
     "Gradle.test-infra [:TestListing.main()].executor": "Run",
+    "Gradle.test-infra [clean test].executor": "Run",
     "Gradle.test-infra [generateTestListing].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -103,7 +104,7 @@
       <recent name="reqres" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestListing">
+  <component name="RunManager" selected="Gradle.test-infra [clean test]">
     <configuration name="TestListing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.automationhacks.testinfra.listing.TestListing" />
       <module name="test-infra.test" />
@@ -116,6 +117,29 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="test-infra [clean test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--info" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
     <configuration name="test-infra [generateTestListing]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -141,10 +165,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.TestListing" />
+      <item itemvalue="Gradle.test-infra [clean test]" />
       <item itemvalue="Gradle.test-infra [generateTestListing]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.test-infra [clean test]" />
         <item itemvalue="Application.TestListing" />
         <item itemvalue="Gradle.test-infra [generateTestListing]" />
       </list>
@@ -439,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728787375488</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="- Fixed bug in test listing wherein we had an unnecessary dependency on a non existent gradle task">
+      <option name="closed" value="true" />
+      <created>1728787857397</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1728787857397</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,7 +488,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved OnCall to a dedicated package" />
     <MESSAGE value="- Added annotation Flow to capture functional flow&#10;- Added functional flows into a dedicated file&#10;- Added annotation Service to capture which service does this test cover&#10;- Added service URLs into a dedicated file&#10;- Moved reqres tests into individual packages" />
     <MESSAGE value="- Added logic to calculate statistics on how many tests below to a given service method and flow" />
     <MESSAGE value="Updated maps as final in TestListing" />
@@ -479,7 +512,8 @@
     <MESSAGE value="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure" />
     <MESSAGE value="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user" />
     <MESSAGE value="- Updated test listing to work with Oncall annotation returning object of oncall enum" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Updated test listing to work with Oncall annotation returning object of oncall enum" />
+    <MESSAGE value="- Fixed bug in test listing wherein we had an unnecessary dependency on a non existent gradle task" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed bug in test listing wherein we had an unnecessary dependency on a non existent gradle task" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
