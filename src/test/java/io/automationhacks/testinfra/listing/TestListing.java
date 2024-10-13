@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
+import io.automationhacks.testinfra.constants.Oncalls;
 
 import lombok.Data;
 
@@ -29,8 +30,16 @@ public class TestListing {
         for (Class<?> testClass : testClasses) {
             TestClassInfo classInfo = new TestClassInfo(testClass.getSimpleName());
 
-            String classOncall = getAnnotationValue(testClass, OnCall.class);
-            classInfo.setOnCall(classOncall);
+            Object classOncall = getAnnotationObject(testClass, OnCall.class);
+
+            String classOncallAlias = "";
+
+            if (classOncall instanceof Oncalls oncall) {
+                classOncallAlias = oncall.getAlias();
+                classInfo.setOnCall(classOncallAlias);
+            } else {
+                classInfo.setOnCall(Oncalls.UNASSIGNED.getAlias());
+            }
 
             String classFlow = getAnnotationValue(testClass, Flow.class);
             if (classFlow != null) {
@@ -42,11 +51,16 @@ public class TestListing {
                 if (method.isAnnotationPresent(Test.class)) {
                     TestMethodInfo methodInfo = new TestMethodInfo(method.getName());
 
-                    String methodOnCall = getAnnotationValue(method, OnCall.class);
+                    Object methodOnCall = getAnnotationObject(method, OnCall.class);
                     String methodFlow = getAnnotationValue(method, Flow.class);
                     String methodService = getAnnotationValue(method, Service.class);
 
-                    methodInfo.setOnCall(methodOnCall != null ? methodOnCall : classOncall);
+                    if (methodOnCall instanceof Oncalls oncall) {
+                        methodInfo.setOnCall(oncall.getAlias());
+                    } else {
+                        methodInfo.setOnCall(classOncallAlias);
+                    }
+
                     methodInfo.setFlow(methodFlow != null ? methodFlow : classFlow);
                     methodInfo.setService(methodService);
 
@@ -129,6 +143,20 @@ public class TestListing {
         }
     }
 
+    private static <T> Object getAnnotationObject(
+            Class<?> clazz, Class<? extends Annotation> annotationClass) {
+        if (clazz.isAnnotationPresent(annotationClass)) {
+            try {
+                return annotationClass
+                        .getMethod("value")
+                        .invoke(clazz.getAnnotation(annotationClass));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     private static <T> String getAnnotationValue(
             Class<?> clazz, Class<? extends Annotation> annotationClass) {
         if (clazz.isAnnotationPresent(annotationClass)) {
@@ -152,6 +180,20 @@ public class TestListing {
                         annotationClass
                                 .getMethod("value")
                                 .invoke(method.getAnnotation(annotationClass));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    private static <T> Object getAnnotationObject(
+            Method method, Class<? extends Annotation> annotationClass) {
+        if (method.isAnnotationPresent(annotationClass)) {
+            try {
+                return annotationClass
+                        .getMethod("value")
+                        .invoke(method.getAnnotation(annotationClass));
             } catch (Exception e) {
                 e.printStackTrace();
             }

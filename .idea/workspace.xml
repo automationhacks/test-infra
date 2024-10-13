@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure">
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Oncalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Oncalls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/alerting/SlackPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/listing/TestListing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/listing/TestListing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,13 +104,26 @@
       <recent name="reqres" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.test-infra [generateTestListing]">
+    <configuration name="TestListing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.automationhacks.testinfra.listing.TestListing" />
+      <module name="test-infra.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.automationhacks.testinfra.listing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="test-infra [generateTestListing]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -138,6 +143,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.test-infra [generateTestListing]" />
+        <item itemvalue="Application.TestListing" />
       </list>
     </recent_temporary>
   </component>
@@ -414,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728784394161</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user">
+      <option name="closed" value="true" />
+      <created>1728785372992</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1728785372992</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Moved tests into different folders&#10;- Updated TestListing to be recursive to support filtering values even in nested packages" />
     <MESSAGE value="Ticked completed requirements" />
     <MESSAGE value="Moved OnCall to a dedicated package" />
     <MESSAGE value="- Added annotation Flow to capture functional flow&#10;- Added functional flows into a dedicated file&#10;- Added annotation Service to capture which service does this test cover&#10;- Added service URLs into a dedicated file&#10;- Moved reqres tests into individual packages" />
@@ -454,7 +467,8 @@
     <MESSAGE value="- Updated TestListing.java to dump the output in a JSON file instead of text" />
     <MESSAGE value="Added logic to wrap methods in the table such that user can expand what is required" />
     <MESSAGE value="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure" />
+    <MESSAGE value="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
