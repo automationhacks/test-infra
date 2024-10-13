@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user">
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Updated test listing to work with Oncall annotation returning object of oncall enum">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/listing/TestListing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/listing/TestListing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,38 +72,38 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestListing (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestNGTestListing.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ReqResApiTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.test-infra [:TestListing.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.test-infra [generateTestListing].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TestNG.ReqResApiTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.reqres.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gauravsingh/self/test-infra/build.gradle&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.35517243&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;google-java-format.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestListing (1).executor": "Run",
+    "Application.TestNGTestListing.executor": "Run",
+    "Gradle.ReqResApiTest.executor": "Run",
+    "Gradle.test-infra [:TestListing.main()].executor": "Run",
+    "Gradle.test-infra [generateTestListing].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.ReqResApiTest.executor": "Run",
+    "TestNG.reqres.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/gauravsingh/self/test-infra/build.gradle",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.35517243",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;,
-      &quot;TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA",
+      "TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="reqres" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.test-infra [generateTestListing]">
+  <component name="RunManager" selected="Application.TestListing">
     <configuration name="TestListing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.automationhacks.testinfra.listing.TestListing" />
       <module name="test-infra.test" />
@@ -140,10 +139,14 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.TestListing" />
+      <item itemvalue="Gradle.test-infra [generateTestListing]" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.test-infra [generateTestListing]" />
         <item itemvalue="Application.TestListing" />
+        <item itemvalue="Gradle.test-infra [generateTestListing]" />
       </list>
     </recent_temporary>
   </component>
@@ -428,7 +431,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728785372992</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="- Updated test listing to work with Oncall annotation returning object of oncall enum">
+      <option name="closed" value="true" />
+      <created>1728787375488</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1728787375488</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ticked completed requirements" />
     <MESSAGE value="Moved OnCall to a dedicated package" />
     <MESSAGE value="- Added annotation Flow to capture functional flow&#10;- Added functional flows into a dedicated file&#10;- Added annotation Service to capture which service does this test cover&#10;- Added service URLs into a dedicated file&#10;- Moved reqres tests into individual packages" />
     <MESSAGE value="- Added logic to calculate statistics on how many tests below to a given service method and flow" />
@@ -468,7 +478,8 @@
     <MESSAGE value="Added logic to wrap methods in the table such that user can expand what is required" />
     <MESSAGE value="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure" />
     <MESSAGE value="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user" />
+    <MESSAGE value="- Updated test listing to work with Oncall annotation returning object of oncall enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Updated test listing to work with Oncall annotation returning object of oncall enum" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

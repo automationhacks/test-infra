@@ -74,6 +74,4 @@ task copyWebResources(type: Copy) {
     into 'build/resources/main/static'
 }
 
-processResources.finalizedBy generateTestListing
 generateTestListing.finalizedBy copyWebResources
-test.dependsOn(copyWebResources)
