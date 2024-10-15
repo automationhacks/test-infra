@@ -5,7 +5,24 @@
             <pattern>%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n</pattern>
         </encoder>
     </appender>
-    <root>
+
+    <appender name="ASYNC_RP" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="ReportPortalAppender"/>
+        <!-- Sets the maximum number of log events in the queue -->
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <!--  Set to true to include information about the caller of the logging method. -->
+        <includeCallerData>true</includeCallerData>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_RP"/>
     </root>
 </configuration>

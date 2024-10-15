@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Fixed bug in test listing wherein we had an unnecessary dependency on a non existent gradle task">
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Removed oncall printing on the root message as oncall at a test level (message in thread) makes more sense.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/logback.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -473,7 +473,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728787857397</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="- Removed oncall printing on the root message as oncall at a test level (message in thread) makes more sense.">
+      <option name="closed" value="true" />
+      <created>1728788588821</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1728788588821</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -488,7 +496,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added annotation Flow to capture functional flow&#10;- Added functional flows into a dedicated file&#10;- Added annotation Service to capture which service does this test cover&#10;- Added service URLs into a dedicated file&#10;- Moved reqres tests into individual packages" />
     <MESSAGE value="- Added logic to calculate statistics on how many tests below to a given service method and flow" />
     <MESSAGE value="Updated maps as final in TestListing" />
     <MESSAGE value="Added flow and service tags to tests" />
@@ -513,7 +520,8 @@
     <MESSAGE value="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user" />
     <MESSAGE value="- Updated test listing to work with Oncall annotation returning object of oncall enum" />
     <MESSAGE value="- Fixed bug in test listing wherein we had an unnecessary dependency on a non existent gradle task" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fixed bug in test listing wherein we had an unnecessary dependency on a non existent gradle task" />
+    <MESSAGE value="- Removed oncall printing on the root message as oncall at a test level (message in thread) makes more sense." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Removed oncall printing on the root message as oncall at a test level (message in thread) makes more sense." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
