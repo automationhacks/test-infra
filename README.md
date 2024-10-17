@@ -59,7 +59,7 @@ Open the generated html by navigating to:
 
 http://localhost:8000/static/index.html
 
-### Report portal
+### Report portal (one time setup)
 
 ```commandline
 brew install docker-compose
@@ -71,4 +71,18 @@ curl -LO https://raw.githubusercontent.com/reportportal/reportportal/master/dock
 
 ```commandline
 docker-compose -p reportportal up -d --force-recreate
+```
+
+### Setup Jenkins on docker
+
+```
+docker pull jenkins/jenkins:lts
+```
+
+```
+docker run -d -p 8090:8080 -p 50000:50000 --name jenkins -v ~/self/test-infra/jenkins:/var/jenkins_home jenkins/jenkins:lts
+```
+
+```
+docker logs jenkins
 ```

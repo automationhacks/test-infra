@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Ignore jenkins directory">
-      <change afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added initial Jenkinsfile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -497,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729010783731</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="- Added initial Jenkinsfile">
+      <option name="closed" value="true" />
+      <created>1729129950370</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1729129950370</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -512,7 +520,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added flow and service tags to tests" />
     <MESSAGE value="Added ticks to completed items" />
     <MESSAGE value="- Added groups to test methods&#10;- Added gradle command to run only tests for a single group, multiple groups or combination of groups&#10;- Added sample commands in README.md" />
     <MESSAGE value="- Added groups with slow, regression and slow&#10;- Added command to skip running certain groups" />
@@ -537,7 +544,8 @@
     <MESSAGE value="- Removed oncall printing on the root message as oncall at a test level (message in thread) makes more sense." />
     <MESSAGE value="- Added async wrapper over report portal appender" />
     <MESSAGE value="- Ignore jenkins directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Ignore jenkins directory" />
+    <MESSAGE value="- Added initial Jenkinsfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added initial Jenkinsfile" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
