@@ -7,7 +7,7 @@ pipeline {
 
     parameters {
         choice(name: 'INCLUDED_GROUPS', choices: ['smoke', 'regression', 'slow', 'all'], description: 'Select test group to include in test run')
-        choice(name: 'EXCLUDED_GROUPS', choices: ['smoke', 'regression', 'slow', 'all', 'none'], defaultValue: 'none', description: 'Select test group to exclude in test run')
+        choice(name: 'EXCLUDED_GROUPS', choices: ['smoke', 'regression', 'slow', 'all', 'none'], description: 'Select test group to exclude in test run')
         booleanParam(name: 'RUN_SONAR_QUBE', defaultValue: false, description: 'Run SonarQube analysis')
         string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
     }
