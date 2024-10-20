@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added jenkins installation steps in README.md">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-    </list>
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added open jdk version 17 on the agent image" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -513,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729131653502</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="- Added open jdk version 17 on the agent image">
+      <option name="closed" value="true" />
+      <created>1729411617065</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1729411617065</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -528,7 +533,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added groups to test methods&#10;- Added gradle command to run only tests for a single group, multiple groups or combination of groups&#10;- Added sample commands in README.md" />
     <MESSAGE value="- Added groups with slow, regression and slow&#10;- Added command to skip running certain groups" />
     <MESSAGE value="- Added slack api client dependency&#10;- Added a custom Alert listener&#10;- The alert listener is designed to notify the right person when a test they own failed&#10;- Added a slack notifier class with logic to send message to a configured channel" />
     <MESSAGE value="- Added lombok dependencies for compile and annotation processing" />
@@ -553,7 +557,8 @@
     <MESSAGE value="- Ignore jenkins directory" />
     <MESSAGE value="- Added initial Jenkinsfile" />
     <MESSAGE value="- Added jenkins installation steps in README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added jenkins installation steps in README.md" />
+    <MESSAGE value="- Added open jdk version 17 on the agent image" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added open jdk version 17 on the agent image" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

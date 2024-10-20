@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'openjdk:17'
-            label 'java17'
+            image 'openjdk:17-alpine'
         }
     }
 
