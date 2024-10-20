@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added open jdk version 17 on the agent image" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Removed label tag">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile.groovy" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,33 +72,33 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestListing (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestNGTestListing.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ReqResApiTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.test-infra [:TestListing.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.test-infra [clean test].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.test-infra [generateTestListing].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TestNG.ReqResApiTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.reqres.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gauravsingh/self/test-infra/build.gradle&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.35517243&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestListing (1).executor": "Run",
+    "Application.TestNGTestListing.executor": "Run",
+    "Gradle.ReqResApiTest.executor": "Run",
+    "Gradle.test-infra [:TestListing.main()].executor": "Run",
+    "Gradle.test-infra [clean test].executor": "Run",
+    "Gradle.test-infra [generateTestListing].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.ReqResApiTest.executor": "Run",
+    "TestNG.reqres.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/gauravsingh/self/test-infra/build.gradle",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.35517243",
+    "settings.editor.selected.configurable": "org.codinjutsu.tools.jenkins.servers"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;,
-      &quot;TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA",
+      "TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="reqres" />
@@ -518,7 +521,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729411617065</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="- Removed label tag">
+      <option name="closed" value="true" />
+      <created>1729411801857</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1729411801857</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -533,7 +544,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added groups with slow, regression and slow&#10;- Added command to skip running certain groups" />
     <MESSAGE value="- Added slack api client dependency&#10;- Added a custom Alert listener&#10;- The alert listener is designed to notify the right person when a test they own failed&#10;- Added a slack notifier class with logic to send message to a configured channel" />
     <MESSAGE value="- Added lombok dependencies for compile and annotation processing" />
     <MESSAGE value="Removed .idea folder&#10;Updated the project folder and name" />
@@ -558,7 +568,8 @@
     <MESSAGE value="- Added initial Jenkinsfile" />
     <MESSAGE value="- Added jenkins installation steps in README.md" />
     <MESSAGE value="- Added open jdk version 17 on the agent image" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added open jdk version 17 on the agent image" />
+    <MESSAGE value="- Removed label tag" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Removed label tag" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
