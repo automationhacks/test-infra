@@ -1,8 +1,9 @@
 pipeline {
-    agent any
-
-    tools {
-        jdk 'jdk17'
+    agent {
+        docker {
+            image 'openjdk:17'
+            label 'java17'
+        }
     }
 
     parameters {
@@ -35,7 +36,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             when {
-                expression { params.RUN_SONAR_QUBE}
+                expression { params.RUN_SONAR_QUBE }
             }
 
             steps {
