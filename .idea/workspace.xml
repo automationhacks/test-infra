@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Updated pipelines" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Removed defaultValue from choices which is not supported.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -534,7 +536,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729414052850</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="- Removed defaultValue from choices which is not supported.">
+      <option name="closed" value="true" />
+      <created>1729417364928</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1729417364928</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -549,7 +559,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added lombok dependencies for compile and annotation processing" />
     <MESSAGE value="Removed .idea folder&#10;Updated the project folder and name" />
     <MESSAGE value="Update IntelliJ module name to test-infra" />
     <MESSAGE value="Renamed gradle project to test-infra" />
@@ -574,7 +583,8 @@
     <MESSAGE value="- Added open jdk version 17 on the agent image" />
     <MESSAGE value="- Removed label tag" />
     <MESSAGE value="- Updated pipelines" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Updated pipelines" />
+    <MESSAGE value="- Removed defaultValue from choices which is not supported." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Removed defaultValue from choices which is not supported." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
