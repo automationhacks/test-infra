@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Removed defaultValue from choices which is not supported.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Updated agent section" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -544,7 +542,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729417364928</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="- Updated image">
+      <option name="closed" value="true" />
+      <created>1729788788471</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1729788788471</updated>
+    </task>
+    <task id="LOCAL-00047" summary="- Updated agent section">
+      <option name="closed" value="true" />
+      <created>1729789422869</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1729789422869</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -559,8 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed .idea folder&#10;Updated the project folder and name" />
-    <MESSAGE value="Update IntelliJ module name to test-infra" />
     <MESSAGE value="Renamed gradle project to test-infra" />
     <MESSAGE value="Refactored slack notification code to remove local history and publish a message on suite finish with failure as an inline message." />
     <MESSAGE value="Refactored code to add a divider after message is posted" />
@@ -584,7 +596,9 @@
     <MESSAGE value="- Removed label tag" />
     <MESSAGE value="- Updated pipelines" />
     <MESSAGE value="- Removed defaultValue from choices which is not supported." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Removed defaultValue from choices which is not supported." />
+    <MESSAGE value="- Updated image" />
+    <MESSAGE value="- Updated agent section" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Updated agent section" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

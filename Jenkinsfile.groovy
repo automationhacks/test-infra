@@ -28,7 +28,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh './gradlew test -DincludedGroups=smoke --info'
+                    sh './gradlew test -DincludedGroups=${INCLUDED_GROUPS} --info'
                 }
             }
         }
