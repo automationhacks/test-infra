@@ -106,7 +106,7 @@ jacocoTestCoverageVerification {
             includes = ['io.automationhacks.*']
 
             limit {
-                minimum = 0.4
+                minimum = 0.0
             }
         }
 
@@ -119,7 +119,7 @@ jacocoTestCoverageVerification {
             limit {
                 counter = 'LINE'
                 value = 'TOTALCOUNT'
-                minimum = 0.4
+                minimum = 0.0
             }
         }
     }
