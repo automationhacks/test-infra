@@ -36,8 +36,7 @@ public class ReqResLoginTest {
                 .when()
                 .post("/login")
                 .then()
-                // TODO: Change this back to 200 once you've verified the negative scenario
-                .statusCode(500)
+                .statusCode(200)
                 .body("token", notNullValue());
     }
 

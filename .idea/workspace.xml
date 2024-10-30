@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Updated agent section" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="Updated test command">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,33 +72,33 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.TestListing (1).executor": "Run",
-    "Application.TestNGTestListing.executor": "Run",
-    "Gradle.ReqResApiTest.executor": "Run",
-    "Gradle.test-infra [:TestListing.main()].executor": "Run",
-    "Gradle.test-infra [clean test].executor": "Run",
-    "Gradle.test-infra [generateTestListing].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TestNG.ReqResApiTest.executor": "Run",
-    "TestNG.reqres.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/gauravsingh/self/test-infra/build.gradle",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.35517243",
-    "settings.editor.selected.configurable": "org.codinjutsu.tools.jenkins.servers"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.TestListing (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestNGTestListing.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ReqResApiTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.test-infra [:TestListing.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.test-infra [clean test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.test-infra [generateTestListing].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TestNG.ReqResApiTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.reqres.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gauravsingh/self/test-infra/build.gradle&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.35517243&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.codinjutsu.tools.jenkins.servers&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA",
-      "TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;,
+      &quot;TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="reqres" />
@@ -558,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729789422869</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Updated test command">
+      <option name="closed" value="true" />
+      <created>1729789730028</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1729789730028</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -573,7 +584,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Renamed gradle project to test-infra" />
     <MESSAGE value="Refactored slack notification code to remove local history and publish a message on suite finish with failure as an inline message." />
     <MESSAGE value="Refactored code to add a divider after message is posted" />
     <MESSAGE value="Extracted TestResultManager.java with logic to prepare a test result entry" />
@@ -598,7 +608,8 @@
     <MESSAGE value="- Removed defaultValue from choices which is not supported." />
     <MESSAGE value="- Updated image" />
     <MESSAGE value="- Updated agent section" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Updated agent section" />
+    <MESSAGE value="Updated test command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated test command" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

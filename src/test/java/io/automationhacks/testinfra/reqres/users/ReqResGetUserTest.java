@@ -54,8 +54,7 @@ public class ReqResGetUserTest {
     @OnCall(DISHA)
     @Service(LIST_USERS)
     public void testSingleUserNotFound() {
-        // TODO: Change this back to 404 once you've verified the negative scenario
-        given().when().get("/users/23").then().statusCode(204);
+        given().when().get("/users/23").then().statusCode(404);
     }
 
     @Test(groups = {Groups.REGRESSION})
@@ -72,8 +71,7 @@ public class ReqResGetUserTest {
         given().when()
                 .get("/unknown/2")
                 .then()
-                // TODO: Change this back to 200 once you've verified the negative scenario
-                .statusCode(500)
+                .statusCode(200)
                 .body("data.id", equalTo(2))
                 .body("data.name", notNullValue());
     }

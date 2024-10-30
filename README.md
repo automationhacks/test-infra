@@ -9,9 +9,8 @@
 - ✅ Should be able to tag each test to a functional area
 - ✅ Should be able to get metrics on how many tests belong to a given area
 - ✅ Should be able to trigger a slack summary with each individual test failure as a child message in thread
--
-- Should be able to calculate if a test is broken consistently
-- Should be able to calculate if a test is flaky consistently
+- Should be able to calculate if a test is broken consistently (via report portal)
+- Should be able to calculate if a test is flaky consistently (via areport portal)
 
 ### Running tests
 
@@ -73,16 +72,7 @@ curl -LO https://raw.githubusercontent.com/reportportal/reportportal/master/dock
 docker-compose -p reportportal up -d --force-recreate
 ```
 
-### Setup Jenkins on docker
+### Setup Jenkins
 
-```
-docker pull jenkins/jenkins:lts
-```
+This project shares an example Jenkinsfile with a pipeline to indicate how a build and test run pipeline could look like
 
-```
-docker run -d -p 8090:8080 -p 50000:50000 --name jenkins -v ~/self/test-infra/jenkins:/var/jenkins_home jenkins/jenkins:lts
-```
-
-```
-docker logs jenkins
-```

@@ -36,8 +36,7 @@ public class ReqResRegistrationTest {
                 .when()
                 .post("/register")
                 .then()
-                // TODO: Change this back to 200 once you've verified the negative scenario
-                .statusCode(400)
+                .statusCode(200)
                 .body("id", notNullValue())
                 .body("token", notNullValue());
     }
@@ -52,8 +51,7 @@ public class ReqResRegistrationTest {
                 .when()
                 .post("/register")
                 .then()
-                // TODO: Change this back to 400 once you've verified the negative scenario
-                .statusCode(200)
+                .statusCode(400)
                 .body("error", equalTo("Missing password"));
     }
 }
