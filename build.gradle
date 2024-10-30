@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 group = 'io.automationhacks'
@@ -42,6 +43,8 @@ test {
 
     // show stdout and stderr of test JVM on console
     testLogging.showStandardStreams = true
+
+    finalizedBy jacocoTestReport
 }
 
 task runTests() {
@@ -61,6 +64,8 @@ task runTests() {
             classpath = sourceSets.test.runtimeClasspath
             args = ['-testclass', testClasses.join(','), '-groups', groups.join(',')]
         }
+
+        finalizedBy jacocoTestReport
     }
 }
 
@@ -75,3 +80,49 @@ task copyWebResources(type: Copy) {
 }
 
 generateTestListing.finalizedBy copyWebResources
+
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+jacocoTestReport {
+    // the task has a dependency on tests to be run before coverage could be generated
+    dependsOn test
+
+    // We can specify different formats in which JaCoCo returns code coverage data in
+    reports {
+        xml.required = true
+        csv.required = true
+        html.required = true
+    }
+}
+
+jacocoTestCoverageVerification {
+    dependsOn jacocoTestReport
+
+    violationRules {
+        rule {
+            enabled = true
+            includes = ['io.automationhacks.*']
+
+            limit {
+                minimum = 0.4
+            }
+        }
+
+        rule {
+            enabled = true
+            element = 'CLASS'
+            includes = ['io.automationhacks.*']
+            excludes = []
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                minimum = 0.4
+            }
+        }
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification

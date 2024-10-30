@@ -83,8 +83,9 @@ public class ReqResGetUserTest {
         given().when().get("/unknown/23").then().statusCode(404);
     }
 
-    // TODO: Remove this test if you want to see non skipped counts
-    @Test(groups = {Groups.REGRESSION})
+    @Test(
+            groups = {Groups.REGRESSION},
+            enabled = false)
     @OnCall(AUTOMATION_HACKS)
     @Service(LIST_RESOURCES)
     public void testThatAlwaysGetsSkipped() {
