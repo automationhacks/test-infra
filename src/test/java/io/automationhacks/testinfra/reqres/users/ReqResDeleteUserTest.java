@@ -8,10 +8,7 @@ import com.epam.reportportal.annotations.attribute.Attributes;
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
-import io.automationhacks.testinfra.constants.Flows;
-import io.automationhacks.testinfra.constants.Groups;
-import io.automationhacks.testinfra.constants.Oncalls;
-import io.automationhacks.testinfra.constants.Services;
+import io.automationhacks.testinfra.constants.*;
 import io.restassured.RestAssured;
 
 import org.testng.annotations.BeforeClass;
@@ -26,7 +23,7 @@ public class ReqResDeleteUserTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @Service(Services.DELETE_USER)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testDelete() {

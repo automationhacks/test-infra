@@ -11,10 +11,7 @@ import com.epam.reportportal.annotations.attribute.Attributes;
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
-import io.automationhacks.testinfra.constants.Flows;
-import io.automationhacks.testinfra.constants.Groups;
-import io.automationhacks.testinfra.constants.Oncalls;
-import io.automationhacks.testinfra.constants.Services;
+import io.automationhacks.testinfra.constants.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -23,6 +20,7 @@ import org.testng.annotations.Test;
 
 @OnCall(Oncalls.AUTOMATION_HACKS)
 @Flow(Flows.USERS)
+@Test(groups = {Team.IDENTITY})
 public class ReqResUpdateUserTest {
 
     @BeforeClass(alwaysRun = true)
@@ -30,7 +28,7 @@ public class ReqResUpdateUserTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @Service(Services.UPDATE_USER)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testUpdate() {
@@ -47,7 +45,7 @@ public class ReqResUpdateUserTest {
                 .body("updatedAt", notNullValue());
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @Service(Services.PATCH_USER)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testPatch() {

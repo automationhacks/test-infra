@@ -14,6 +14,7 @@ import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
 import io.automationhacks.testinfra.constants.Groups;
+import io.automationhacks.testinfra.constants.Team;
 import io.restassured.RestAssured;
 
 import org.testng.SkipException;
@@ -22,6 +23,7 @@ import org.testng.annotations.Test;
 
 @OnCall(TEST_INFRA)
 @Flow(Flows.USERS)
+@Test(groups = {Team.IDENTITY})
 public class ReqResGetUserTest {
 
     @BeforeClass(alwaysRun = true)
@@ -29,7 +31,7 @@ public class ReqResGetUserTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(AUTOMATION_HACKS)
     @Service(LIST_USERS)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
@@ -42,7 +44,7 @@ public class ReqResGetUserTest {
                 .body("data", hasSize(greaterThan(0)));
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(RACHIT)
     @Service(LIST_USERS)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
@@ -55,7 +57,7 @@ public class ReqResGetUserTest {
                 .body("data.email", notNullValue());
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(DISHA)
     @Service(LIST_USERS)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
@@ -63,7 +65,7 @@ public class ReqResGetUserTest {
         given().when().get("/users/23").then().statusCode(404);
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(RACHIT)
     @Service(LIST_RESOURCES)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
@@ -71,7 +73,7 @@ public class ReqResGetUserTest {
         given().when().get("/unknown").then().statusCode(200).body("data", hasSize(greaterThan(0)));
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(ROJA)
     @Service(SINGLE_RESOURCE)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
@@ -84,7 +86,7 @@ public class ReqResGetUserTest {
                 .body("data.name", notNullValue());
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(AUTOMATION_HACKS)
     @Service(LIST_RESOURCES)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
@@ -93,7 +95,7 @@ public class ReqResGetUserTest {
     }
 
     @Test(
-            groups = {Groups.REGRESSION},
+            groups = {Team.IDENTITY, Groups.REGRESSION},
             enabled = false)
     @OnCall(AUTOMATION_HACKS)
     @Service(LIST_RESOURCES)

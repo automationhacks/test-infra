@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Expect minimum coverage of 0.0">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" afterDir="false" />
@@ -13,7 +14,6 @@
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/reportportal.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/reportportal.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,14 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727369649988</updated>
-    </task>
-    <task id="LOCAL-00003" summary="- Added test listing utility to fetch the list of all test methods in a test class in a given package">
-      <option name="closed" value="true" />
-      <created>1727370817095</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1727370817095</updated>
     </task>
     <task id="LOCAL-00004" summary="- Added oncall information on some test methods and class levels&#10;- Added an OnCall annotation&#10;- Updated TestNGTestListing to add convenience methods to check if OnCall annotation is present on a test file and if yes, return that.">
       <option name="closed" value="true" />
@@ -585,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730302535323</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method.">
+      <option name="closed" value="true" />
+      <created>1730562178221</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1730562178221</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -600,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved test result preparation messages to TestResultManager class" />
     <MESSAGE value="- Renamed AlertListener.java to TestListener.java&#10;- Updated build.gradle reference&#10;- Renamed SlackNotifier.java as SlackClient.java&#10;- Extracted logic to publish slack message into SlackPublisher" />
     <MESSAGE value="- Refactored to remove redundant oncall param" />
     <MESSAGE value="- Adding .idea files" />
@@ -625,7 +624,8 @@
     <MESSAGE value="Updated status code in expected to simulate a case where all the cases pass." />
     <MESSAGE value="- Disabled the tests that always skips&#10;- Added gradle config for jacoco test coverage" />
     <MESSAGE value="- Expect minimum coverage of 0.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Expect minimum coverage of 0.0" />
+    <MESSAGE value="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

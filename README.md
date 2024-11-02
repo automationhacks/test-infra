@@ -76,3 +76,18 @@ docker-compose -p reportportal up -d --force-recreate
 
 This project shares an example Jenkinsfile with a pipeline to indicate how a build and test run pipeline could look like
 
+### Test metrics in report portal
+
+Let's first generate some test data to then organize it within report portal
+
+```commandline
+./gradlew test -DincludedGroups=identity -Drp.launch=identity_tests -Drp.attributes="group:test_infra;test_type:backend;team:identity" --info
+```
+
+```commandline
+./gradlew test -DincludedGroups=onboarding -Drp.launch=onboarding_tests -Drp.attributes="group:test_infra;test_type:backend;team:onboarding" --info
+```
+
+```commandline
+./gradlew test -DincludedGroups=performance -Drp.launch=performance_tests -Drp.attributes="group:test_infra;test_type:backend;team:performance" --info
+```

@@ -14,6 +14,7 @@ import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
 import io.automationhacks.testinfra.constants.Groups;
 import io.automationhacks.testinfra.constants.Services;
+import io.automationhacks.testinfra.constants.Team;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -29,7 +30,7 @@ public class ReqResCreateUserTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Groups.SMOKE})
+    @Test(groups = {Team.IDENTITY, Groups.SMOKE})
     @Service(Services.CREATE_USER)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testCreate() {

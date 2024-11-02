@@ -10,10 +10,7 @@ import com.epam.reportportal.annotations.attribute.Attributes;
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
-import io.automationhacks.testinfra.constants.Flows;
-import io.automationhacks.testinfra.constants.Groups;
-import io.automationhacks.testinfra.constants.Oncalls;
-import io.automationhacks.testinfra.constants.Services;
+import io.automationhacks.testinfra.constants.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -29,7 +26,7 @@ public class ReqResLoginTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Groups.SMOKE})
+    @Test(groups = {Team.ONBOARDING, Groups.SMOKE})
     @Service(Services.LOGIN)
     @Attributes(attributes = {@Attribute(key = "team", value = "onboarding")})
     public void testLoginSuccessful() {
@@ -44,7 +41,7 @@ public class ReqResLoginTest {
                 .body("token", notNullValue());
     }
 
-    @Test(groups = {Groups.REGRESSION})
+    @Test(groups = {Team.ONBOARDING, Groups.REGRESSION})
     @Service(Services.LOGIN)
     @Attributes(attributes = {@Attribute(key = "team", value = "onboarding")})
     public void testLoginUnsuccessful() {

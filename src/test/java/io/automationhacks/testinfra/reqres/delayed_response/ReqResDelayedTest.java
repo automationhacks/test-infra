@@ -11,10 +11,7 @@ import com.epam.reportportal.annotations.attribute.Attributes;
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
-import io.automationhacks.testinfra.constants.Flows;
-import io.automationhacks.testinfra.constants.Groups;
-import io.automationhacks.testinfra.constants.Oncalls;
-import io.automationhacks.testinfra.constants.Services;
+import io.automationhacks.testinfra.constants.*;
 import io.restassured.RestAssured;
 
 import org.testng.annotations.BeforeClass;
@@ -29,7 +26,7 @@ public class ReqResDelayedTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Groups.SMOKE, Groups.REGRESSION, Groups.SLOW})
+    @Test(groups = {Team.PERFORMANCE, Groups.SMOKE, Groups.REGRESSION, Groups.SLOW})
     @Attributes(attributes = {@Attribute(key = "team", value = "performance")})
     @Service(Services.DELAYED_RESPONSE)
     public void testDelayedResponse() {
