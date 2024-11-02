@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="Updated status code in expected to simulate a case where all the cases pass.">
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Expect minimum coverage of 0.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/reportportal.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/reportportal.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,22 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727369649988</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Initial commit">
-      <option name="closed" value="true" />
-      <created>1727369753567</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1727369753567</updated>
-    </task>
-    <task id="LOCAL-00002" summary="- Added gradle dependency for testng and restassured&#10;- Added test suite for reqres API generated via claude&#10;- Added some use cases required in README.md">
-      <option name="closed" value="true" />
-      <created>1727370499804</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1727370499804</updated>
     </task>
     <task id="LOCAL-00003" summary="- Added test listing utility to fetch the list of all test methods in a test class in a given package">
       <option name="closed" value="true" />
@@ -579,7 +569,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730301838262</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="- Disabled the tests that always skips&#10;- Added gradle config for jacoco test coverage">
+      <option name="closed" value="true" />
+      <created>1730302396404</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1730302396405</updated>
+    </task>
+    <task id="LOCAL-00051" summary="- Expect minimum coverage of 0.0">
+      <option name="closed" value="true" />
+      <created>1730302535323</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1730302535323</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -594,8 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored code to add a divider after message is posted" />
-    <MESSAGE value="Extracted TestResultManager.java with logic to prepare a test result entry" />
     <MESSAGE value="Moved test result preparation messages to TestResultManager class" />
     <MESSAGE value="- Renamed AlertListener.java to TestListener.java&#10;- Updated build.gradle reference&#10;- Renamed SlackNotifier.java as SlackClient.java&#10;- Extracted logic to publish slack message into SlackPublisher" />
     <MESSAGE value="- Refactored to remove redundant oncall param" />
@@ -619,7 +623,9 @@
     <MESSAGE value="- Updated agent section" />
     <MESSAGE value="Updated test command" />
     <MESSAGE value="Updated status code in expected to simulate a case where all the cases pass." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated status code in expected to simulate a case where all the cases pass." />
+    <MESSAGE value="- Disabled the tests that always skips&#10;- Added gradle config for jacoco test coverage" />
+    <MESSAGE value="- Expect minimum coverage of 0.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Expect minimum coverage of 0.0" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

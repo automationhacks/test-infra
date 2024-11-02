@@ -5,6 +5,9 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
+import com.epam.reportportal.annotations.attribute.Attribute;
+import com.epam.reportportal.annotations.attribute.Attributes;
+
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
@@ -29,6 +32,7 @@ public class ReqResUpdateUserTest {
 
     @Test(groups = {Groups.REGRESSION})
     @Service(Services.UPDATE_USER)
+    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testUpdate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
 
@@ -45,6 +49,7 @@ public class ReqResUpdateUserTest {
 
     @Test(groups = {Groups.REGRESSION})
     @Service(Services.PATCH_USER)
+    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testPatch() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
 

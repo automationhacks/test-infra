@@ -5,6 +5,9 @@ import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
 
+import com.epam.reportportal.annotations.attribute.Attribute;
+import com.epam.reportportal.annotations.attribute.Attributes;
+
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
@@ -28,6 +31,7 @@ public class ReqResCreateUserTest {
 
     @Test(groups = {Groups.SMOKE})
     @Service(Services.CREATE_USER)
+    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testCreate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"leader\"}";
 

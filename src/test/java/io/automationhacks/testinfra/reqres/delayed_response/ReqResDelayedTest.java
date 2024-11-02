@@ -5,6 +5,9 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
 
+import com.epam.reportportal.annotations.attribute.Attribute;
+import com.epam.reportportal.annotations.attribute.Attributes;
+
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
@@ -27,6 +30,7 @@ public class ReqResDelayedTest {
     }
 
     @Test(groups = {Groups.SMOKE, Groups.REGRESSION, Groups.SLOW})
+    @Attributes(attributes = {@Attribute(key = "team", value = "performance")})
     @Service(Services.DELAYED_RESPONSE)
     public void testDelayedResponse() {
         given().when()

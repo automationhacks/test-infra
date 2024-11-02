@@ -4,6 +4,9 @@ import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
 
+import com.epam.reportportal.annotations.attribute.Attribute;
+import com.epam.reportportal.annotations.attribute.Attributes;
+
 import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
@@ -28,6 +31,7 @@ public class ReqResLoginTest {
 
     @Test(groups = {Groups.SMOKE})
     @Service(Services.LOGIN)
+    @Attributes(attributes = {@Attribute(key = "team", value = "onboarding")})
     public void testLoginSuccessful() {
         String requestBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
 
@@ -42,6 +46,7 @@ public class ReqResLoginTest {
 
     @Test(groups = {Groups.REGRESSION})
     @Service(Services.LOGIN)
+    @Attributes(attributes = {@Attribute(key = "team", value = "onboarding")})
     public void testLoginUnsuccessful() {
         String requestBody = "{\"email\": \"peter@klaven\"}";
 
