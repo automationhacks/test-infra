@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added groups">
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,22 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727369649988</updated>
-    </task>
-    <task id="LOCAL-00004" summary="- Added oncall information on some test methods and class levels&#10;- Added an OnCall annotation&#10;- Updated TestNGTestListing to add convenience methods to check if OnCall annotation is present on a test file and if yes, return that.">
-      <option name="closed" value="true" />
-      <created>1727412243136</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1727412243136</updated>
-    </task>
-    <task id="LOCAL-00005" summary="- Split tests into different files to explore if test listing would work on multiple files and packages&#10;- Removed JUnit dependency">
-      <option name="closed" value="true" />
-      <created>1727413345517</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1727413345517</updated>
     </task>
     <task id="LOCAL-00006" summary="Reformatted code into AOSP style">
       <option name="closed" value="true" />
@@ -577,7 +561,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730562178221</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="- Updated groovy file to take in additional params required by report portal">
+      <option name="closed" value="true" />
+      <created>1730910857859</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1730910857859</updated>
+    </task>
+    <task id="LOCAL-00054" summary="- Added groups">
+      <option name="closed" value="true" />
+      <created>1730910965910</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1730910965910</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -592,8 +592,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Renamed AlertListener.java to TestListener.java&#10;- Updated build.gradle reference&#10;- Renamed SlackNotifier.java as SlackClient.java&#10;- Extracted logic to publish slack message into SlackPublisher" />
-    <MESSAGE value="- Refactored to remove redundant oncall param" />
     <MESSAGE value="- Adding .idea files" />
     <MESSAGE value="- Updated TestListing.java to dump the output in a JSON file instead of text" />
     <MESSAGE value="Added logic to wrap methods in the table such that user can expand what is required" />
@@ -617,7 +615,9 @@
     <MESSAGE value="- Disabled the tests that always skips&#10;- Added gradle config for jacoco test coverage" />
     <MESSAGE value="- Expect minimum coverage of 0.0" />
     <MESSAGE value="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method." />
+    <MESSAGE value="- Updated groovy file to take in additional params required by report portal" />
+    <MESSAGE value="- Added groups" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added groups" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
