@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added groups">
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile.groovy" afterDir="false" />
+    <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Skip running tests in the build phase">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,22 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727369649988</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Reformatted code into AOSP style">
-      <option name="closed" value="true" />
-      <created>1727413428046</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1727413428046</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Extracted oncalls into a static java file and updated references in tests">
-      <option name="closed" value="true" />
-      <created>1727413707888</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1727413707888</updated>
     </task>
     <task id="LOCAL-00008" summary="- Fixed a bug in source package having / instead of . and updated the print statements to have more readable attribution listing">
       <option name="closed" value="true" />
@@ -577,7 +561,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730910965910</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="- Removed quotes around rp.attributes">
+      <option name="closed" value="true" />
+      <created>1730911205577</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1730911205577</updated>
+    </task>
+    <task id="LOCAL-00056" summary="- Skip running tests in the build phase">
+      <option name="closed" value="true" />
+      <created>1730911237947</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1730911237947</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -592,8 +592,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Adding .idea files" />
-    <MESSAGE value="- Updated TestListing.java to dump the output in a JSON file instead of text" />
     <MESSAGE value="Added logic to wrap methods in the table such that user can expand what is required" />
     <MESSAGE value="- Modified Oncalls.java from string variables to enum constant such that each oncall item will have a slack id and email&#10;- Retagged cases with actual slack users&#10;- Modified TestResult, TestResultManager.java, SlackPublisher and SlackClient.java to work with Oncall enum constant instead of String&#10;- Modified slack message to tag the slack user in a given test failure" />
     <MESSAGE value="- Renamed Oncalls names&#10;- Added a name field for any future purpose in terms of pulling out reports/store data in db&#10;- Modified slack message to not have the oncall text be displayed in bold and code format so that the person can get a yellow border for their own user" />
@@ -617,7 +615,9 @@
     <MESSAGE value="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method." />
     <MESSAGE value="- Updated groovy file to take in additional params required by report portal" />
     <MESSAGE value="- Added groups" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added groups" />
+    <MESSAGE value="- Removed quotes around rp.attributes" />
+    <MESSAGE value="- Skip running tests in the build phase" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Skip running tests in the build phase" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

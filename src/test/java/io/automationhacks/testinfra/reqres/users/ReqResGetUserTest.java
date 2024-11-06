@@ -1,7 +1,6 @@
 package io.automationhacks.testinfra.reqres.users;
 
 import static io.automationhacks.testinfra.constants.Oncalls.*;
-import static io.automationhacks.testinfra.constants.Services.*;
 import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
@@ -14,6 +13,7 @@ import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
 import io.automationhacks.testinfra.constants.Groups;
+import io.automationhacks.testinfra.constants.Services;
 import io.automationhacks.testinfra.constants.Team;
 import io.restassured.RestAssured;
 
@@ -33,8 +33,12 @@ public class ReqResGetUserTest {
 
     @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(AUTOMATION_HACKS)
-    @Service(LIST_USERS)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Service(Services.LIST_USERS)
+    @Attributes(
+            attributes = {
+                @Attribute(key = "team", value = "identity"),
+                @Attribute(key = "service", value = Services.LIST_USERS)
+            })
     public void testListUsers() {
         given().when()
                 .get("/users?page=2")
@@ -46,8 +50,12 @@ public class ReqResGetUserTest {
 
     @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(RACHIT)
-    @Service(LIST_USERS)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Service(Services.LIST_USERS)
+    @Attributes(
+            attributes = {
+                @Attribute(key = "team", value = "identity"),
+                @Attribute(key = "service", value = Services.LIST_USERS)
+            })
     public void testSingleUser() {
         given().when()
                 .get("/users/2")
@@ -59,24 +67,36 @@ public class ReqResGetUserTest {
 
     @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(DISHA)
-    @Service(LIST_USERS)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Service(Services.LIST_USERS)
+    @Attributes(
+            attributes = {
+                @Attribute(key = "team", value = "identity"),
+                @Attribute(key = "service", value = Services.LIST_USERS)
+            })
     public void testSingleUserNotFound() {
         given().when().get("/users/23").then().statusCode(404);
     }
 
     @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(RACHIT)
-    @Service(LIST_RESOURCES)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Service(Services.LIST_RESOURCES)
+    @Attributes(
+            attributes = {
+                @Attribute(key = "team", value = "identity"),
+                @Attribute(key = "service", value = Services.LIST_RESOURCES)
+            })
     public void testListResource() {
         given().when().get("/unknown").then().statusCode(200).body("data", hasSize(greaterThan(0)));
     }
 
     @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(ROJA)
-    @Service(SINGLE_RESOURCE)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Service(Services.SINGLE_RESOURCE)
+    @Attributes(
+            attributes = {
+                @Attribute(key = "team", value = "identity"),
+                @Attribute(key = "service", value = Services.SINGLE_RESOURCE)
+            })
     public void testSingleResource() {
         given().when()
                 .get("/unknown/2")
@@ -88,8 +108,12 @@ public class ReqResGetUserTest {
 
     @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
     @OnCall(AUTOMATION_HACKS)
-    @Service(LIST_RESOURCES)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Service(Services.LIST_RESOURCES)
+    @Attributes(
+            attributes = {
+                @Attribute(key = "team", value = "identity"),
+                @Attribute(key = "service", value = Services.LIST_RESOURCES)
+            })
     public void testSingleResourceNotFound() {
         given().when().get("/unknown/23").then().statusCode(404);
     }
@@ -98,8 +122,12 @@ public class ReqResGetUserTest {
             groups = {Team.IDENTITY, Groups.REGRESSION},
             enabled = false)
     @OnCall(AUTOMATION_HACKS)
-    @Service(LIST_RESOURCES)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Service(Services.LIST_RESOURCES)
+    @Attributes(
+            attributes = {
+                @Attribute(key = "team", value = "identity"),
+                @Attribute(key = "service", value = Services.LIST_RESOURCES)
+            })
     public void testThatAlwaysGetsSkipped() {
         throw new SkipException(
                 "This test is used to check if slack notification includes skipped tests or not");
