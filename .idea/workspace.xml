@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7833418-4ce6-446a-9713-3a622a005b00" name="Changes" comment="- Added a test project level attribute override&#10;- Added a attribute at each test level to indicate the team that owns a given test method.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/automationhacks/testinfra/constants/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/delayed_response/ReqResDelayedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/login/ReqResLoginTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/register/ReqResRegistrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResCreateUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResDeleteUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResGetUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/automationhacks/testinfra/reqres/users/ReqResUpdateUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,34 +71,34 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.TestListing (1).executor": "Run",
-    "Application.TestNGTestListing.executor": "Run",
-    "Gradle.Build test-infra.executor": "Run",
-    "Gradle.ReqResApiTest.executor": "Run",
-    "Gradle.test-infra [:TestListing.main()].executor": "Run",
-    "Gradle.test-infra [clean test].executor": "Run",
-    "Gradle.test-infra [generateTestListing].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TestNG.ReqResApiTest.executor": "Run",
-    "TestNG.reqres.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/gauravsingh/self/test-infra/build.gradle",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.35517243",
-    "settings.editor.selected.configurable": "org.codinjutsu.tools.jenkins.servers"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.TestListing (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestNGTestListing.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build test-infra.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ReqResApiTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.test-infra [:TestListing.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.test-infra [clean test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.test-infra [generateTestListing].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TestNG.ReqResApiTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.reqres.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gauravsingh/self/test-infra/build.gradle&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.35517243&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.codinjutsu.tools.jenkins.servers&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA",
-      "TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;,
+      &quot;TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="reqres" />

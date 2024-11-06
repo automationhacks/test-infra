@@ -10,6 +10,7 @@ pipeline {
         choice(name: 'EXCLUDED_GROUPS', choices: ['smoke', 'regression', 'slow', 'all', 'none'], description: 'Select test group to exclude in test run')
         booleanParam(name: 'RUN_SONAR_QUBE', defaultValue: false, description: 'Run SonarQube analysis')
         string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
+        string(name: 'ARGS', defaultValue: '-Drp.launch=identity_tests -Drp.attributes="group:test_infra;test_type:backend;team:identity"', description: "Report portal params")
     }
 
     stages {
@@ -28,7 +29,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh './gradlew test -DincludedGroups=${INCLUDED_GROUPS} --info'
+                    sh './gradlew test -DincludedGroups=${INCLUDED_GROUPS} ${ARGS} --info'
                 }
             }
         }
@@ -48,7 +49,6 @@ pipeline {
         stage('Generate Reports') {
             steps {
                 junit '**/build/test-results/test/*.xml'
-                jacoco(execPattern: '**/build/jacoco/*.exec')
             }
         }
 
