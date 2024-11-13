@@ -83,9 +83,9 @@ services:
         soft: -1
         hard: -1
     ## Uncomment the following lines to expose OpenSearch on ports 9200 and 9600
-    # ports:
-    #   - "9200:9200"  # OpenSearch HTTP API
-    #   - "9600:9600"  # OpenSearch Performance Analyzer
+    ports:
+      - "9200:9200"  # OpenSearch HTTP API
+      - "9600:9600"  # OpenSearch Performance Analyzer
     volumes:
       - opensearch:/usr/share/opensearch/data
     healthcheck:
@@ -115,8 +115,8 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     ## Uncomment to expose Database
-    # ports:
-    #   - "5432:5432"
+    ports:
+      - "5432:5432"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER" ]
       interval: 10s
