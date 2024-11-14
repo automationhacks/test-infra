@@ -52,7 +52,7 @@ services:
       ## ReportPortal UI 
       - "8080:8080"
       ## Uncomment to expose Traefik dashboard
-      # - "8081:8081" 
+      - "8081:8081"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command:
@@ -90,6 +90,20 @@ services:
       - opensearch:/usr/share/opensearch/data
     healthcheck:
       test: [ "CMD", "curl","-s" ,"-f", "http://0.0.0.0:9200/_cat/health" ]
+    networks:
+      - reportportal
+    restart: always
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.16.0
+    container_name: opensearch-dashboards
+    ports:
+      - "5601:5601"
+    environment:
+      OPENSEARCH_HOSTS: '["http://opensearch:9200"]'
+      DISABLE_SECURITY_DASHBOARDS_PLUGIN: "true"
+    depends_on:
+      - opensearch
     networks:
       - reportportal
     restart: always
@@ -133,9 +147,9 @@ services:
     logging:
       <<: *logging
     ## Uncomment the following lines to expose RabbitMQ Management on port 5672 and API on 15672
-    # ports:
-    #   - "5672:5672"
-    #   - "15672:15672"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_USER: *rabbitmq_user
       RABBITMQ_DEFAULT_PASS: *rabbitmq_password

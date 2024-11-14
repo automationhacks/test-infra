@@ -60,9 +60,13 @@ http://localhost:8000/static/index.html
 
 ### Report portal (one time setup)
 
+Download and install docker from [docker website](https://www.docker.com/) depending on your platform and install
+
 ```commandline
 brew install docker-compose
 ```
+
+You can skip below if you already have docker-compose.yml file
 
 ```commandline
 curl -LO https://raw.githubusercontent.com/reportportal/reportportal/master/docker-compose.yml
