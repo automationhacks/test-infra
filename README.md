@@ -76,6 +76,16 @@ curl -LO https://raw.githubusercontent.com/reportportal/reportportal/master/dock
 docker-compose -p reportportal up -d --force-recreate
 ```
 
+Explanation
+
+This docker-compose command does the following:
+
+- `-p reportportal`: Sets the project name to reportportal, which namespaces the containers, networks, and volumes
+  created.
+- `up`: Builds, (re)creates, and starts the services defined in the docker-compose.yml file.
+- `-d`: Runs the containers in detached mode (in the background).
+  `--force-recreate`: Forces a recreation of containers even if no configuration has changed.
+
 ### Setup Jenkins
 
 This project shares an example Jenkinsfile with a pipeline to indicate how a build and test run pipeline could look like
