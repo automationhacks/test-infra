@@ -98,15 +98,15 @@ services:
     image: opensearchproject/opensearch-dashboards:2.16.0
     container_name: opensearch-dashboards
     ports:
-      - "5601:5601"
+      - "5601:5601"  # Dashboard UI
     environment:
-      OPENSEARCH_HOSTS: '["http://opensearch:9200"]'
-      DISABLE_SECURITY_DASHBOARDS_PLUGIN: "true"
+      OPENSEARCH_HOSTS: http://opensearch:9200
     depends_on:
       - opensearch
     networks:
       - reportportal
     restart: always
+
 
   ## PostgreSQL as the main database for ReportPortal
   postgres:
@@ -127,7 +127,7 @@ services:
       MIN_WAL_SIZE: 2GB
       MAX_WAL_SIZE: 4GB
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres:/bitnami/postgresql
     ## Uncomment to expose Database
     ports:
       - "5432:5432"
@@ -154,6 +154,7 @@ services:
       RABBITMQ_DEFAULT_USER: *rabbitmq_user
       RABBITMQ_DEFAULT_PASS: *rabbitmq_password
       RABBITMQ_MANAGEMENT_ALLOW_WEB_ACCESS: "true"
+      RABBITMQ_DISK_FREE_ABSOLUTE_LIMIT: 50MB
       RABBITMQ_PLUGINS: >
         rabbitmq_consistent_hash_exchange
         rabbitmq_management
@@ -222,7 +223,7 @@ services:
     restart: always
 
   api:
-    image: reportportal/service-api:5.12.0
+    image: reportportal/service-api:5.12.1
     logging:
       <<: *logging
     depends_on:
