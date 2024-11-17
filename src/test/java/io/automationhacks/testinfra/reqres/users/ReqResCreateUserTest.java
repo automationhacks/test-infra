@@ -41,7 +41,8 @@ public class ReqResCreateUserTest {
                 .when()
                 .post("/users")
                 .then()
-                .statusCode(201)
+                // TODO: Broken test example, change to 201 to fix
+                .statusCode(200)
                 .body("name", equalTo("morpheus"))
                 .body("job", equalTo("leader"))
                 .body("id", notNullValue())

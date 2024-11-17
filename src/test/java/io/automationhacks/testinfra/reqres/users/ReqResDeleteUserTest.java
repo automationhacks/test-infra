@@ -14,6 +14,9 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+import java.util.Random;
+
 @OnCall(Oncalls.RACHIT)
 @Flow(Flows.USERS)
 public class ReqResDeleteUserTest {
@@ -23,10 +26,17 @@ public class ReqResDeleteUserTest {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
+    @Test(
+            groups = {Team.IDENTITY, Groups.REGRESSION},
+            invocationCount = 5)
     @Service(Services.DELETE_USER)
     @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
     public void testDelete() {
-        given().when().delete("/users/2").then().statusCode(204);
+        var statusCodes = List.of(500, 503, 401, 204);
+        // TODO: Flaky test example, change to 204 to fix
+        given().when()
+                .delete("/users/2")
+                .then()
+                .statusCode(statusCodes.get(new Random().nextInt(statusCodes.size())));
     }
 }
