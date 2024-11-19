@@ -101,6 +101,8 @@ services:
       - "5601:5601"  # Dashboard UI
     environment:
       OPENSEARCH_HOSTS: http://opensearch:9200
+      DISABLE_SECURITY_DASHBOARDS_PLUGIN: "true"  # Add this line to disable security
+      OPENSEARCH_ALLOW_INSECURE: "true"          # Add this line to allow insecure connections
     depends_on:
       - opensearch
     networks:
