@@ -105,3 +105,34 @@ Let's first generate some test data to then organize it within report portal
 ```commandline
 ./gradlew test -DincludedGroups=performance -Drp.launch=performance_tests -Drp.attributes="group:test_infra;test_type:backend;team:performance" --info
 ```
+
+## Gen AI
+
+### Copilot edits
+
+Help me create a base test class in testng that all the classes in package io.automationhacks.testinfra.reqres.users;
+inherit from and that has the common setup method to set the base URL
+
+---
+
+Remove the setup method in child classes
+
+---
+
+Also make sure to remove any unused imports
+
+---
+
+Please apply the same changes in all files in users package
+
+Relative path: src/test/java/io/automationhacks/testinfra/reqres/users
+
+---
+
+Please make below changes in all files in users package
+
+Relative path: src/test/java/io/automationhacks/testinfra/reqres/users
+
+- Ensure the class extends BaseTest
+- Remove any unused imports
+- Do not change the @Test annotation or anything in the test body
