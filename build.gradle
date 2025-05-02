@@ -15,13 +15,13 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+    implementation 'org.testng:testng:7.10.2'
 
     testCompileOnly 'org.projectlombok:lombok:1.18.34'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
 
     implementation 'com.slack.api:slack-api-client:1.43.1'
     testImplementation 'io.rest-assured:rest-assured:5.5.0'
-    testImplementation 'org.testng:testng:7.10.2'
     testImplementation 'com.epam.reportportal:agent-java-testng:5.4.2'
     testImplementation 'com.epam.reportportal:logger-java-logback:5.2.2'
 }
@@ -31,6 +31,7 @@ test {
         useDefaultListeners = true
         listeners << 'io.automationhacks.testinfra.alerting.TestListener'
         listeners << 'com.epam.reportportal.testng.ReportPortalTestNGListener'
+        listeners << 'io.automationhacks.testinfra.TestAnalysisListener'
         parallel = 'methods'
         threadCount = 6
 
