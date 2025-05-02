@@ -8,39 +8,31 @@ import java.util.logging.Logger;
 
 public class ConfigurationLoader {
     private static final Logger logger = Logger.getLogger(ConfigurationLoader.class.getName());
-    private static final String CONFIG_FILE = "reportportal-analyzer.properties";
+    private static final String RP_CONFIG_FILE = "reportportal.properties";
     private static Properties properties;
 
     static {
         properties = new Properties();
-        try (InputStream input = ConfigurationLoader.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {
+        try (InputStream input = ConfigurationLoader.class.getClassLoader().getResourceAsStream(RP_CONFIG_FILE)) {
             if (input == null) {
-                throw new RuntimeException("Unable to find " + CONFIG_FILE);
+                throw new RuntimeException("Unable to find " + RP_CONFIG_FILE);
             }
             properties.load(input);
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Error loading configuration", e);
-            throw new RuntimeException("Failed to load configuration", e);
+            logger.log(Level.SEVERE, "Error loading Report Portal configuration", e);
+            throw new RuntimeException("Failed to load Report Portal configuration", e);
         }
     }
 
     public static String getReportPortalBaseUrl() {
-        return properties.getProperty("reportportal.baseUrl");
+        return properties.getProperty("rp.endpoint") + "/api/v1";
     }
 
     public static String getReportPortalProject() {
-        return properties.getProperty("reportportal.project");
+        return properties.getProperty("rp.project");
     }
 
     public static String getReportPortalAuthToken() {
-        return properties.getProperty("reportportal.authToken");
-    }
-
-    public static boolean isSchedulerEnabled() {
-        return Boolean.parseBoolean(properties.getProperty("analysis.scheduler.enabled", "false"));
-    }
-
-    public static long getSchedulerInterval() {
-        return Long.parseLong(properties.getProperty("analysis.scheduler.interval", "3600000"));
+        return properties.getProperty("rp.api.key");
     }
 }

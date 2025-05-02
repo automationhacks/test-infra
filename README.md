@@ -56,7 +56,7 @@ python3 -m http.server 8000
 
 Open the generated html by navigating to:
 
-http://localhost:8000/static/index.html
+<http://localhost:8000/static/index.html>
 
 ### Report portal (one time setup)
 
@@ -136,3 +136,13 @@ Relative path: src/test/java/io/automationhacks/testinfra/reqres/users
 - Ensure the class extends BaseTest
 - Remove any unused imports
 - Do not change the @Test annotation or anything in the test body
+
+```zsh
+export RP_HOST="http://localhost:8080"
+export RP_PROJECT="test_infra"
+export RP_API_TOKEN="test-infra_iKPprGYfS96dyOQDD1tJfi7cRGhSu6zMrUolU9olbfnOdCrb8qWDE4O8CvxloIPc"
+```
+
+```zsh
+./reportportal-mcp-server
+```

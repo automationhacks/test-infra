@@ -24,6 +24,9 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:5.5.0'
     testImplementation 'com.epam.reportportal:agent-java-testng:5.4.2'
     testImplementation 'com.epam.reportportal:logger-java-logback:5.2.2'
+    implementation 'org.json:json:20231013'
+    // gson
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 test {
