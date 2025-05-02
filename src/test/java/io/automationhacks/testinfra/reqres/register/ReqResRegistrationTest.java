@@ -11,6 +11,7 @@ import io.automationhacks.testinfra.attribution.annotations.Flow;
 import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.*;
+import io.automationhacks.testinfra.reqres.BaseReqResTest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -19,20 +20,20 @@ import org.testng.annotations.Test;
 
 @OnCall(Oncalls.AUTOMATION_HACKS)
 @Flow(Flows.REGISTER)
-public class ReqResRegistrationTest {
+public class ReqResRegistrationTest extends BaseReqResTest {
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
         RestAssured.baseURI = "https://reqres.in/api";
     }
 
-    @Test(groups = {Team.ONBOARDING, Groups.SMOKE})
+    @Test(groups = { Team.ONBOARDING, Groups.SMOKE })
     @Service(Services.REGISTER)
-    @Attributes(attributes = {@Attribute(key = "team", value = "onboarding")})
+    @Attributes(attributes = { @Attribute(key = "team", value = "onboarding") })
     public void testRegisterSuccessful() {
         String requestBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\"}";
 
-        given().contentType(ContentType.JSON)
+        getDefaultSpec()
                 .body(requestBody)
                 .when()
                 .post("/register")
@@ -42,13 +43,13 @@ public class ReqResRegistrationTest {
                 .body("token", notNullValue());
     }
 
-    @Test(groups = {Team.ONBOARDING, Groups.REGRESSION})
+    @Test(groups = { Team.ONBOARDING, Groups.REGRESSION })
     @Service(Services.REGISTER)
-    @Attributes(attributes = {@Attribute(key = "team", value = "onboarding")})
+    @Attributes(attributes = { @Attribute(key = "team", value = "onboarding") })
     public void testRegisterUnsuccessful() {
         String requestBody = "{\"email\": \"sydney@fife\"}";
 
-        given().contentType(ContentType.JSON)
+        getDefaultSpec()
                 .body(requestBody)
                 .when()
                 .post("/register")

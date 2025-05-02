@@ -1,8 +1,6 @@
 package io.automationhacks.testinfra.reqres.users;
 
-import static io.automationhacks.testinfra.constants.Oncalls.*;
 import static io.restassured.RestAssured.given;
-
 import static org.hamcrest.Matchers.*;
 
 import com.epam.reportportal.annotations.attribute.Attribute;
@@ -13,34 +11,30 @@ import io.automationhacks.testinfra.attribution.annotations.OnCall;
 import io.automationhacks.testinfra.attribution.annotations.Service;
 import io.automationhacks.testinfra.constants.Flows;
 import io.automationhacks.testinfra.constants.Groups;
+import io.automationhacks.testinfra.constants.Oncalls;
 import io.automationhacks.testinfra.constants.Services;
 import io.automationhacks.testinfra.constants.Team;
-import io.restassured.RestAssured;
+import io.automationhacks.testinfra.reqres.BaseReqResTest;
+import io.restassured.http.ContentType;
 
 import org.testng.SkipException;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@OnCall(TEST_INFRA)
+@OnCall(Oncalls.RACHIT)
 @Flow(Flows.USERS)
-@Test(groups = {Team.IDENTITY})
-public class ReqResGetUserTest {
+@Test(groups = { Team.IDENTITY })
+public class ReqResGetUserTest extends BaseReqResTest {
 
-    @BeforeClass(alwaysRun = true)
-    public void setup() {
-        RestAssured.baseURI = "https://reqres.in/api";
-    }
-
-    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
-    @OnCall(AUTOMATION_HACKS)
+    @Test(groups = { Team.IDENTITY, Groups.REGRESSION })
+    @OnCall(Oncalls.AUTOMATION_HACKS)
     @Service(Services.LIST_USERS)
-    @Attributes(
-            attributes = {
-                @Attribute(key = "team", value = "identity"),
-                @Attribute(key = "service", value = Services.LIST_USERS)
-            })
+    @Attributes(attributes = {
+            @Attribute(key = "team", value = "identity"),
+            @Attribute(key = "service", value = Services.LIST_USERS)
+    })
     public void testListUsers() {
-        given().when()
+        getDefaultSpec()
+                .when()
                 .get("/users?page=2")
                 .then()
                 .statusCode(200)
@@ -48,16 +42,16 @@ public class ReqResGetUserTest {
                 .body("data", hasSize(greaterThan(0)));
     }
 
-    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
-    @OnCall(RACHIT)
+    @Test(groups = { Team.IDENTITY, Groups.REGRESSION })
+    @OnCall(Oncalls.RACHIT)
     @Service(Services.LIST_USERS)
-    @Attributes(
-            attributes = {
-                @Attribute(key = "team", value = "identity"),
-                @Attribute(key = "service", value = Services.LIST_USERS)
-            })
+    @Attributes(attributes = {
+            @Attribute(key = "team", value = "identity"),
+            @Attribute(key = "service", value = Services.LIST_USERS)
+    })
     public void testSingleUser() {
-        given().when()
+        getDefaultSpec()
+                .when()
                 .get("/users/2")
                 .then()
                 .statusCode(200)
@@ -65,40 +59,47 @@ public class ReqResGetUserTest {
                 .body("data.email", notNullValue());
     }
 
-    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
-    @OnCall(DISHA)
+    @Test(groups = { Team.IDENTITY, Groups.REGRESSION })
+    @OnCall(Oncalls.DISHA)
     @Service(Services.LIST_USERS)
-    @Attributes(
-            attributes = {
-                @Attribute(key = "team", value = "identity"),
-                @Attribute(key = "service", value = Services.LIST_USERS)
-            })
+    @Attributes(attributes = {
+            @Attribute(key = "team", value = "identity"),
+            @Attribute(key = "service", value = Services.LIST_USERS)
+    })
     public void testSingleUserNotFound() {
-        given().when().get("/users/23").then().statusCode(404);
+        getDefaultSpec()
+                .when()
+                .get("/users/23")
+                .then()
+                .statusCode(404);
     }
 
-    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
-    @OnCall(RACHIT)
+    @Test(groups = { Team.IDENTITY, Groups.REGRESSION })
+    @OnCall(Oncalls.RACHIT)
     @Service(Services.LIST_RESOURCES)
-    @Attributes(
-            attributes = {
-                @Attribute(key = "team", value = "identity"),
-                @Attribute(key = "service", value = Services.LIST_RESOURCES)
-            })
+    @Attributes(attributes = {
+            @Attribute(key = "team", value = "identity"),
+            @Attribute(key = "service", value = Services.LIST_RESOURCES)
+    })
     public void testListResource() {
-        given().when().get("/unknown").then().statusCode(200).body("data", hasSize(greaterThan(0)));
+        getDefaultSpec()
+                .when()
+                .get("/unknown")
+                .then()
+                .statusCode(200)
+                .body("data", hasSize(greaterThan(0)));
     }
 
-    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
-    @OnCall(ROJA)
+    @Test(groups = { Team.IDENTITY, Groups.REGRESSION })
+    @OnCall(Oncalls.ROJA)
     @Service(Services.SINGLE_RESOURCE)
-    @Attributes(
-            attributes = {
-                @Attribute(key = "team", value = "identity"),
-                @Attribute(key = "service", value = Services.SINGLE_RESOURCE)
-            })
+    @Attributes(attributes = {
+            @Attribute(key = "team", value = "identity"),
+            @Attribute(key = "service", value = Services.SINGLE_RESOURCE)
+    })
     public void testSingleResource() {
-        given().when()
+        getDefaultSpec()
+                .when()
                 .get("/unknown/2")
                 .then()
                 .statusCode(200)
@@ -106,28 +107,28 @@ public class ReqResGetUserTest {
                 .body("data.name", notNullValue());
     }
 
-    @Test(groups = {Team.IDENTITY, Groups.REGRESSION})
-    @OnCall(AUTOMATION_HACKS)
+    @Test(groups = { Team.IDENTITY, Groups.REGRESSION })
+    @OnCall(Oncalls.AUTOMATION_HACKS)
     @Service(Services.LIST_RESOURCES)
-    @Attributes(
-            attributes = {
-                @Attribute(key = "team", value = "identity"),
-                @Attribute(key = "service", value = Services.LIST_RESOURCES)
-            })
+    @Attributes(attributes = {
+            @Attribute(key = "team", value = "identity"),
+            @Attribute(key = "service", value = Services.LIST_RESOURCES)
+    })
     public void testSingleResourceNotFound() {
-        given().when().get("/unknown/23").then().statusCode(404);
+        getDefaultSpec()
+                .when()
+                .get("/unknown/23")
+                .then()
+                .statusCode(404);
     }
 
-    @Test(
-            groups = {Team.IDENTITY, Groups.REGRESSION},
-            enabled = false)
-    @OnCall(AUTOMATION_HACKS)
+    @Test(groups = { Team.IDENTITY, Groups.REGRESSION }, enabled = false)
+    @OnCall(Oncalls.AUTOMATION_HACKS)
     @Service(Services.LIST_RESOURCES)
-    @Attributes(
-            attributes = {
-                @Attribute(key = "team", value = "identity"),
-                @Attribute(key = "service", value = Services.LIST_RESOURCES)
-            })
+    @Attributes(attributes = {
+            @Attribute(key = "team", value = "identity"),
+            @Attribute(key = "service", value = Services.LIST_RESOURCES)
+    })
     public void testThatAlwaysGetsSkipped() {
         throw new SkipException(
                 "This test is used to check if slack notification includes skipped tests or not");

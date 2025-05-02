@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +23,7 @@ public class ReportPortalClient {
     }
 
     public String fetchTestItems(String status) throws IOException {
-        // Construct the filter according to Report Portal API format
-        String filter = URLEncoder.encode("status=" + status, StandardCharsets.UTF_8.toString());
-        String endpoint = String.format("%s/%s/item?filter.cnt.%s", baseUrl, projectName, filter);
+        String endpoint = String.format("%s/%s/item?filter.eq.status=%s", baseUrl, projectName, status);
         logger.fine("Fetching test items from: " + endpoint);
         return makeRequest(endpoint);
     }
