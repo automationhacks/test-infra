@@ -1,6 +1,7 @@
 package io.automationhacks.testinfra;
 
 import org.testng.IExecutionListener;
+
 import java.util.logging.Logger;
 
 public class TestAnalysisListener implements IExecutionListener {
@@ -9,11 +10,6 @@ public class TestAnalysisListener implements IExecutionListener {
 
     public TestAnalysisListener() {
         this.analyzer = new AutoTestAnalyzer();
-    }
-
-    @Override
-    public void onExecutionStart() {
-        // No action needed when test execution starts
     }
 
     @Override

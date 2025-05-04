@@ -1,10 +1,18 @@
 package io.automationhacks.testinfra;
 
-import io.automationhacks.testinfra.config.ConfigurationLoader;
+import com.google.gson.Gson;
 
+import io.automationhacks.testinfra.config.ConfigurationLoader;
+import io.automationhacks.testinfra.model.report_portal.testitem.get_test_items_response.GetItemResponse;
+
+import lombok.Data;
+
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -13,11 +21,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ReportPortalClient {
-    private static final Logger logger = Logger.getLogger(ReportPortalClient.class.getName());
+    private static final Logger logger =
+            LoggerFactory.getLogger(ReportPortalClient.class.getName());
     private final String baseUrl;
     private final String projectName;
     private final String authToken;
@@ -30,32 +37,40 @@ public class ReportPortalClient {
     }
 
     public List<FailedTestItem> getFailedTests() throws IOException {
-        // Get latest launch ID
+        var launchId = getLatestLaunchId();
+        var itemsResponse = getFailedItems(launchId);
+        return parseFailedTestItems(itemsResponse);
+    }
+
+    @NotNull
+    private String getLatestLaunchId() throws IOException {
         String latestLaunchEndpoint =
                 String.format("%s/api/v1/%s/launch/latest", baseUrl, projectName);
         String launchResponse = makeRequest(latestLaunchEndpoint, "application/json");
-        logger.fine("Latest launch response: " + launchResponse);
+        logger.info("Latest launch response: " + launchResponse);
 
         String launchId = extractLaunchIdFromLatest(launchResponse);
         if (launchId == null) {
             throw new IOException("Could not find latest launch ID");
         }
+        return launchId;
+    }
 
-        // Get failed test items with correct filter format
+    private String getFailedItems(String launchId) throws IOException {
         String itemsEndpoint =
                 String.format(
                         "%s/api/v1/%s/item/v2?filter.in.type=STEP&filter.in.status=FAILED&providerType=launch&launchId=%s",
                         baseUrl, projectName, launchId);
         String itemsResponse = makeRequest(itemsEndpoint, "application/json");
-        logger.fine("Failed items response: " + itemsResponse);
+        logger.info("Failed items response: " + itemsResponse);
 
-        return parseFailedTestItems(itemsResponse);
+        return itemsResponse;
     }
 
     public String fetchStackTrace(String testItemId) throws IOException {
         String endpoint =
                 String.format("%s/api/v1/%s/item/%s/log", baseUrl, projectName, testItemId);
-        logger.fine("Fetching stack trace for test item: " + testItemId);
+        logger.info("Fetching stack trace for test item: " + testItemId);
         return makeRequest(endpoint, "text/plain");
     }
 
@@ -68,7 +83,7 @@ public class ReportPortalClient {
                 return String.valueOf(launch.getInt("id"));
             }
         } catch (JSONException e) {
-            logger.log(Level.SEVERE, "Error parsing launch response", e);
+            logger.error("Error parsing launch response", e);
         }
         return null;
     }
@@ -96,67 +111,35 @@ public class ReportPortalClient {
                     String.format(
                             "Request failed with HTTP %d for endpoint: %s. Error: %s",
                             responseCode, endpoint, errorMessage);
-            logger.log(Level.SEVERE, error);
+            logger.error(error);
             throw new IOException(error);
         }
     }
 
     private List<FailedTestItem> parseFailedTestItems(String response) throws JSONException {
         List<FailedTestItem> failedTests = new ArrayList<>();
-        JSONObject jsonResponse = new JSONObject(response);
-        JSONArray content = jsonResponse.getJSONArray("content");
 
-        for (int i = 0; i < content.length(); i++) {
-            JSONObject item = content.getJSONObject(i);
-            FailedTestItem test = new FailedTestItem();
-            test.setId(item.getString("id"));
-            test.setName(item.getString("name"));
-            test.setFullName(item.getString("codeRef"));
-            if (item.has("description")) {
-                test.setStackTrace(item.getString("description"));
-            }
-            failedTests.add(test);
+        var getItemResponse = new Gson().fromJson(response, GetItemResponse.class);
+
+        for (var item : getItemResponse.getContent()) {
+            FailedTestItem testItem = new FailedTestItem();
+
+            testItem.setId(String.valueOf(item.getId()));
+            testItem.setName(item.getName());
+            testItem.setFullName(item.getCodeRef());
+            testItem.setStackTrace(item.getDescription());
+
+            failedTests.add(testItem);
         }
 
         return failedTests;
     }
 
+    @Data
     public static class FailedTestItem {
         private String id;
         private String name;
         private String fullName;
         private String stackTrace;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getFullName() {
-            return fullName;
-        }
-
-        public void setFullName(String fullName) {
-            this.fullName = fullName;
-        }
-
-        public String getStackTrace() {
-            return stackTrace;
-        }
-
-        public void setStackTrace(String stackTrace) {
-            this.stackTrace = stackTrace;
-        }
     }
 }

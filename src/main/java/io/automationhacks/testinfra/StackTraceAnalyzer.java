@@ -1,14 +1,14 @@
 package io.automationhacks.testinfra;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.logging.Logger;
 
 public class StackTraceAnalyzer {
     private static final Logger logger = Logger.getLogger(StackTraceAnalyzer.class.getName());
 
-    private static final Pattern ASSERTION_PATTERN = Pattern
-            .compile("(?:expected:<(.+)> but was:<(.+)>|AssertionError: (.+))");
+    private static final Pattern ASSERTION_PATTERN =
+            Pattern.compile("(?:expected:<(.+)> but was:<(.+)>|AssertionError: (.+))");
     private static final Pattern HTTP_ERROR_PATTERN = Pattern.compile("HTTP Response: (\\d+).*");
     private static final Pattern TIMEOUT_PATTERN = Pattern.compile(".*TimeoutException: (.+)");
 
@@ -57,7 +57,8 @@ public class StackTraceAnalyzer {
             String method = locationMatcher.group(1);
             String file = locationMatcher.group(2);
             String line = locationMatcher.group(3);
-            return String.format("Issue detected in method %s at %s:%s. Review this location for potential issues.",
+            return String.format(
+                    "Issue detected in method %s at %s:%s. Review this location for potential issues.",
                     method.trim(), file, line);
         }
 
@@ -83,7 +84,8 @@ public class StackTraceAnalyzer {
         String message = matcher.group(3);
 
         if (expected != null && actual != null) {
-            return String.format("Assertion failed: Expected '%s' but got '%s'. Verify the test data and assertions.",
+            return String.format(
+                    "Assertion failed: Expected '%s' but got '%s'. Verify the test data and assertions.",
                     expected, actual);
         } else if (message != null) {
             return String.format("Assertion failed: %s. Review the assertion conditions.", message);
@@ -109,7 +111,8 @@ public class StackTraceAnalyzer {
             case "503":
                 return "Service Unavailable (503). The service might be down or overloaded.";
             default:
-                return String.format("HTTP error %s occurred. Check the request and server status.", statusCode);
+                return String.format(
+                        "HTTP error %s occurred. Check the request and server status.", statusCode);
         }
     }
 }

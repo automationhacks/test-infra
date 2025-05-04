@@ -1,7 +1,6 @@
 package io.automationhacks.testinfra;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class AutoTestAnalyzer {
@@ -17,19 +16,15 @@ public class AutoTestAnalyzer {
     /** Analyzes failing tests and provides suggestions. */
     public void analyzeFailingTests() {
         try {
+            logger.info("Fetching failing tests from Report Portal...");
             var failingTests = reportPortalClient.getFailedTests();
-            List<String> testItemIds =
-                    failingTests.stream().map(ReportPortalClient.FailedTestItem::getId).toList();
-
-            for (String testItemId : testItemIds) {
-                try {
-                    String stackTrace = reportPortalClient.fetchStackTrace(testItemId);
-                    String suggestion = stackTraceAnalyzer.analyze(stackTrace);
-                    logAnalysisResult(testItemId, suggestion);
-                } catch (IOException e) {
-                    logger.warning(
-                            "Error analyzing test item " + testItemId + ": " + e.getMessage());
-                }
+            logger.info(
+                    "Found "
+                            + failingTests.size()
+                            + " failing tests. Analyzing stack traces for suggestions...");
+            for (var testItem : failingTests) {
+                String suggestion = stackTraceAnalyzer.analyze(testItem.getStackTrace());
+                logAnalysisResult(testItem.getId(), suggestion);
             }
         } catch (IOException e) {
             logger.severe("Error fetching failing tests: " + e.getMessage());
