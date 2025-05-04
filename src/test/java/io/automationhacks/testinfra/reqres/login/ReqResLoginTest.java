@@ -23,8 +23,7 @@ public class ReqResLoginTest extends BaseReqResTest {
     public void testLoginSuccessful() {
         String requestBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\"}";
 
-        given()
-                .contentType(ContentType.JSON)
+        getDefaultSpec()
                 .body(requestBody)
                 .when()
                 .post("/login")
@@ -40,8 +39,7 @@ public class ReqResLoginTest extends BaseReqResTest {
     public void testLoginUnsuccessful() {
         String requestBody = "{\"email\": \"peter@klaven\"}";
 
-        given()
-                .contentType(ContentType.JSON)
+        getDefaultSpec()
                 .body(requestBody)
                 .when()
                 .post("/login")

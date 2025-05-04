@@ -16,7 +16,7 @@ public class BaseReqResTest {
 
     protected RequestSpecification getDefaultSpec() {
         return RestAssured.given()
-                .queryParam("x-api-key", API_KEY) // Changed from header to query parameter
+                .header("x-api-key", API_KEY) // Changed to use header instead of query parameter
                 .contentType("application/json");
     }
 }

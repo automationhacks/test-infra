@@ -1,8 +1,6 @@
 package io.automationhacks.testinfra.reqres.users;
 
 import static io.automationhacks.testinfra.constants.Oncalls.*;
-import static io.restassured.RestAssured.given;
-
 import static org.hamcrest.Matchers.*;
 
 import com.epam.reportportal.annotations.attribute.Attribute;
@@ -15,33 +13,24 @@ import io.automationhacks.testinfra.constants.Flows;
 import io.automationhacks.testinfra.constants.Groups;
 import io.automationhacks.testinfra.constants.Services;
 import io.automationhacks.testinfra.constants.Team;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-
-import org.testng.annotations.BeforeClass;
+import io.automationhacks.testinfra.reqres.BaseReqResTest;
 import org.testng.annotations.Test;
 
 @OnCall(DISHA)
 @Flow(Flows.USERS)
-public class ReqResCreateUserTest {
-
-    @BeforeClass(alwaysRun = true)
-    public void setup() {
-        RestAssured.baseURI = "https://reqres.in/api";
-    }
-
-    @Test(groups = {Team.IDENTITY, Groups.SMOKE})
+public class ReqResCreateUserTest extends BaseReqResTest {
+    @Test(groups = { Team.IDENTITY, Groups.SMOKE })
     @Service(Services.CREATE_USER)
-    @Attributes(attributes = {@Attribute(key = "team", value = "identity")})
+    @Attributes(attributes = { @Attribute(key = "team", value = "identity") })
     public void testCreate() {
         String requestBody = "{\"name\": \"morpheus\", \"job\": \"leader\"}";
 
-        given().contentType(ContentType.JSON)
+        getDefaultSpec()
                 .body(requestBody)
                 .when()
                 .post("/users")
                 .then()
-                // TODO: Broken test example, change to 201 to fix
+                // Changed to 200 to make test fail, API returns 201
                 .statusCode(200)
                 .body("name", equalTo("morpheus"))
                 .body("job", equalTo("leader"))
