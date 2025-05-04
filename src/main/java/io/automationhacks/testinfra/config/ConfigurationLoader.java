@@ -25,7 +25,7 @@ public class ConfigurationLoader {
     }
 
     public static String getReportPortalBaseUrl() {
-        return properties.getProperty("rp.endpoint") + "/api/v1";
+        return properties.getProperty("rp.endpoint");
     }
 
     public static String getReportPortalProject() {

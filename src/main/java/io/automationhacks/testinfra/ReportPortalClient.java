@@ -2,6 +2,10 @@ package io.automationhacks.testinfra;
 
 import io.automationhacks.testinfra.config.ConfigurationLoader;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -11,9 +15,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ReportPortalClient {
     private static final Logger logger = Logger.getLogger(ReportPortalClient.class.getName());
@@ -30,7 +31,8 @@ public class ReportPortalClient {
 
     public List<FailedTestItem> getFailedTests() throws IOException {
         // Get latest launch ID
-        String latestLaunchEndpoint = String.format("%s/api/v1/%s/launch/latest", baseUrl, projectName);
+        String latestLaunchEndpoint =
+                String.format("%s/api/v1/%s/launch/latest", baseUrl, projectName);
         String launchResponse = makeRequest(latestLaunchEndpoint, "application/json");
         logger.fine("Latest launch response: " + launchResponse);
 
@@ -40,9 +42,10 @@ public class ReportPortalClient {
         }
 
         // Get failed test items with correct filter format
-        String itemsEndpoint = String.format(
-                "%s/api/v1/%s/item?filter.eq.type=STEP&filter.eq.status=FAILED&filter.eq.launch=%s",
-                baseUrl, projectName, launchId);
+        String itemsEndpoint =
+                String.format(
+                        "%s/api/v1/%s/item/v2?filter.in.type=STEP&filter.in.status=FAILED&providerType=launch&launchId=%s",
+                        baseUrl, projectName, launchId);
         String itemsResponse = makeRequest(itemsEndpoint, "application/json");
         logger.fine("Failed items response: " + itemsResponse);
 
@@ -50,7 +53,8 @@ public class ReportPortalClient {
     }
 
     public String fetchStackTrace(String testItemId) throws IOException {
-        String endpoint = String.format("%s/api/v1/%s/item/%s/log", baseUrl, projectName, testItemId);
+        String endpoint =
+                String.format("%s/api/v1/%s/item/%s/log", baseUrl, projectName, testItemId);
         logger.fine("Fetching stack trace for test item: " + testItemId);
         return makeRequest(endpoint, "text/plain");
     }
@@ -88,8 +92,10 @@ public class ReportPortalClient {
                 scanner.useDelimiter("\\A");
                 errorMessage = scanner.hasNext() ? scanner.next() : "";
             }
-            String error = String.format("Request failed with HTTP %d for endpoint: %s. Error: %s",
-                    responseCode, endpoint, errorMessage);
+            String error =
+                    String.format(
+                            "Request failed with HTTP %d for endpoint: %s. Error: %s",
+                            responseCode, endpoint, errorMessage);
             logger.log(Level.SEVERE, error);
             throw new IOException(error);
         }
